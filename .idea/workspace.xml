@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9fcd5f3-321e-4f3a-815d-28131911a1fa" name="Default Changelist" comment="这是一个测试">
+    <list default="true" id="e9fcd5f3-321e-4f3a-815d-28131911a1fa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +49,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="settings.gitee" />
   </component>
   <component name="RunManager">
     <configuration name="Jv" type="Python.DjangoServer" factoryName="Django server">
@@ -95,6 +95,8 @@
       <workItem from="1621641547144" duration="569000" />
       <workItem from="1621642136567" duration="117000" />
       <workItem from="1621642316086" duration="579000" />
+      <workItem from="1621642952489" duration="433000" />
+      <workItem from="1621643402168" duration="72000" />
     </task>
     <task id="LOCAL-00001" summary="asd">
       <created>1621614368403</created>
@@ -131,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621642150284</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="这是一个测试2">
+      <created>1621642966799</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1621642966799</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,33 +150,38 @@
     <MESSAGE value="asd" />
     <MESSAGE value="123" />
     <MESSAGE value="这是一个测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="这是一个测试" />
+    <MESSAGE value="这是一个测试2" />
+    <option name="LAST_COMMIT_MESSAGE" value="这是一个测试2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Notifications" timestamp="1621642868752">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1621642868752" />
-    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1621642337643">
+    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1621642964557">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1621642337643" />
+    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1621642964557" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1621611873419">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1621611873419" />
+    <state x="619" y="313" key="Gitee.ShareDialog" timestamp="1621643496112">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="619" y="313" key="Gitee.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1621643496112" />
     <state x="644" y="303" width="272" height="217" key="Github.ShareDialog" timestamp="1621612560866">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="644" y="303" width="272" height="217" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1621612560866" />
-    <state x="270" y="55" key="SettingsEditor" timestamp="1621642832691">
+    <state x="270" y="55" key="SettingsEditor" timestamp="1621643473686">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1621642832691" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1621642839032">
+    <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1621643473686" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1621643544803">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1621642839032" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1621643544803" />
     <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1621615718760">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
