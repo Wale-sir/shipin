@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    首页
+{% endblock %}
+{% block css %}
+    <style>
+        .home {
+            background-color: yellow;
+            width: 40px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="home">
+        首页
+    </div>
+    <a href="{% url 'user' %}">个人主页</a>
+{% endblock %}
