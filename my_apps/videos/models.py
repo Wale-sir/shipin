@@ -1,20 +1,12 @@
 from django.db import models
-from my_apps.user.models import UserProfile
+from my_apps.user.models import BaseModel, UserProfile
 
 # Create your models here.
+
 
 """
 视频
 """
-
-
-class BaseModel(models.Model):
-    #  基类 不生成表
-    add_time = models.DateTimeField(verbose_name='添加时间', auto_now_add=True)
-    modify_time = models.DateTimeField(verbose_name='修改时间', auto_now=True)
-
-    class Meta:
-        abstract = True
 
 
 """视频类别"""
@@ -64,7 +56,7 @@ class Video(BaseModel):
                                   verbose_name='视频类别')
 
     nationality_type = models.CharField(max_length=100,
-                                        default=nation_type,
+                                        choices=nation_type,
                                         verbose_name='国家')
     info = models.TextField(verbose_name='简介')
     mood = models.IntegerField(default=0,
@@ -91,12 +83,12 @@ class VideoStar(BaseModel):
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        verbose_name='声优'
+        verbose_name='视频'
     )
     name = models.CharField(max_length=100, null=False, verbose_name='名字')
 
     def __str__(self):
-        return '{video}_{star}'.format(video=self.video.name, star=self.name)
+        return self.name
 
     class Meta:
         verbose_name = '声优'
@@ -108,17 +100,17 @@ class VideoSub(BaseModel):
     video = models.ForeignKey(
         Video,
         related_name='video_sub',
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         blank=True,
         null=True,
-        verbose_name='集数'
+        verbose_name='视频'
     )
     url = models.CharField(max_length=500, null=False, verbose_name='地址')
     number = models.IntegerField(default=1, verbose_name='集数')
     likes = models.IntegerField(default=0, verbose_name='点赞数')
 
     def __str__(self):
-        return self.video.name
+        return ''.format(self.number)
 
     class Meta:
         verbose_name = '集数'
@@ -126,19 +118,27 @@ class VideoSub(BaseModel):
 
 
 class VideoComment(BaseModel):
+    """用户评论"""
     video = models.ForeignKey(
-        VideoSub,
+        Video,
         related_name='video_comment',
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
+        verbose_name='视频',
         blank=True,
-
+        null=True
+    )
+    video_sub = models.ForeignKey(
+        VideoSub,
+        related_name='video_sub_comment',
+        on_delete=models.CASCADE,
+        blank=True,
         null=True,
-        verbose_name='视频'
+        verbose_name='视频集数'
     )
     user = models.ForeignKey(
         UserProfile,
         related_name='video_user_comment',
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         blank=True,
         null=True,
         verbose_name='用户'
@@ -155,3 +155,5 @@ class VideoComment(BaseModel):
     class Meta:
         verbose_name = '视频评论'
         verbose_name_plural = verbose_name
+
+

@@ -130,7 +130,12 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# 静态文件
 STATIC_URL = '/static/'
+STATICFILES_DIR = [BASE_DIR / 'static']
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # 创建UserProfile需要 重写user之后 需要加上
 AUTH_USER_MODEL = 'user.UserProfile'
