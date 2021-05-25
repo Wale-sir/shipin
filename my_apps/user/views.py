@@ -9,21 +9,25 @@ from django.contrib.auth import login, logout, authenticate
 class UserView(View):
 
     def get(self, request):
-        return render(request, template_name='user.html')
+        if not request.user.is_authenticated:
+            return redirect(reverse('login'))
+        return render(request, 'user.html', {
+            'type': 'home'
+        })
 
 
 class ReView(View):
     def get(self,request):
-        form = Reform()
+        # form = Reform()
         return render(request,'re.html',{
-            'form': form
+            # 'form': form
         })
 
     def post(self, request):
         form = Reform(request.POST)
         if not form.is_valid():
             return render(request,'re.html',{
-                'form': form
+                'error': form.non_field_errors
             })
         UserProfile.objects.create_user(
             username=form.cleaned_data.get('username'),
@@ -37,10 +41,8 @@ class LoginView(View):
     def get(self,request):
         if request.user.is_authenticated:
             return redirect(reverse('home'))
-        form = LoginForm()
         return render(request,'login.html', {
-            'form': form,
-            'error': form.non_field_errors
+            'user': request.user.is_authenticated
         })
 
     def post(self, request):
@@ -49,7 +51,7 @@ class LoginView(View):
             login(request, form.cleaned_data.get('user'))
         else:
             return render(request, 'login.html',{
-                'form':form
+                'error': form.non_field_errors
             })
         return redirect(reverse('home'))
 

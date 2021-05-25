@@ -1,13 +1,23 @@
-{% extends 'base.html' %}
-{% block title %}
-    注册
-{% endblock %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
     <h1>这是注册页面</h1>
     <form action="{% url 're' %}" method="POST">
         {% csrf_token %}
-        {{ form }}
+        <label for="id_username">用户名:</label>
+        <input type="text" id="id_username" name="username" placeholder="用户名">
+        <label for="id_password">密码:</label>
+        <input type="password" id="id_password" name="password" placeholder="密码">
+        <label for="id_password">重复密码:</label>
+        <input type="password" id="id_password" name="check_password" placeholder="重复密码">
         <button type="submit">提交</button>
+    {{ error }}
     </form>
-{% endblock %}
+    <a href="{% url 'home' %}">主页</a>
+    <a href="{% url 'login' %}">登录</a>
+</body>
+</html>

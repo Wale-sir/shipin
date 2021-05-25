@@ -1,17 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
-    {% block css %}{% endblock %}
+    {% block css %}
+        <style>
+        .head{
+            background-color: #FF79A3;
+            height: 100px;
+
+        }
+        .body{
+            background-color: aqua;
+        }
+        .foot{
+            background-color: antiquewhite;
+        }
+        </style>
+    {% endblock %}
 </head>
 <body>
-{% block custom_bread %}
-{% endblock %}
-{% block content %}
-{% endblock %}
+<div class="head">
+    <h1>
+        head
+    </h1>
+</div>
 
+
+<div class="body">
+    <h1>
+        body
+    </h1>
+    <div>
+    {% if user%}
+            {% if  type != 'home'%}
+                <a href="{% url 'user' %}">个人主页</a>
+                {% else %}
+                <a href="{% url 'home' %}">首页</a>
+            {% endif %}
+        <a href="{% url 'logout' %}">退出</a>
+    {% else%}
+        <a href="{% url 're' %}">注册</a>
+        <a href="{% url 'login' %}">登录</a>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+    {% block custom_bread %}
+    {% endblock %}
+    </div>
+
+</div>
+</body>
+
+
+<footer>
+<div class="foot">
+        <h1>
+       foot
+    </h1>
+</div>
 {% block custom_jss %}
 {% endblock %}
-</body>
+</footer>
+
 </html>

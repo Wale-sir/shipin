@@ -7,14 +7,6 @@
     <div class="home">
         首页
     </div>
-
-    {% if user%}
-        <a href="{% url 'user' %}">个人主页</a>
-        <a href="{% url 'logout' %}">退出</a>
-    {% else %}
-        <a href="{% url 're' %}">注册</a>
-        <a href="{% url 'login' %}">登录</a>
-    {% endif %}
     <div>
         {%  if username %}
             user:{{ username }}

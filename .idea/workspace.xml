@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9fcd5f3-321e-4f3a-815d-28131911a1fa" name="Default Changelist" comment="videos">
-      <change beforePath="$PROJECT_DIR$/.idea/Jv.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Jv.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e9fcd5f3-321e-4f3a-815d-28131911a1fa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/static/js/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/mobile/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/mobile/need/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/icon-ext.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/loading-0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/loading-1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/loading-2.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_apps/videos/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/videos/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_apps/user/user_url.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/user_url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/re.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/re.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +46,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -62,7 +75,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="E:/python 笔记2/Video1012" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -72,6 +85,9 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\myproject\Jv\static\js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\myproject\Jv" />
       <recent name="E:\myproject\Jv\my_apps" />
@@ -130,7 +146,7 @@
       <workItem from="1621839996817" duration="4450000" />
       <workItem from="1621845939690" duration="944000" />
       <workItem from="1621900941077" duration="12088000" />
-      <workItem from="1621933364456" duration="234000" />
+      <workItem from="1621933364456" duration="4753000" />
     </task>
     <task id="LOCAL-00001" summary="asd">
       <created>1621614368403</created>
@@ -209,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621911671585</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="videos">
+      <created>1621933806406</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1621933806406</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,10 +255,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1621731060584" />
-    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1621913396694">
+    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1621933803717">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1621913396694" />
+    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1621933803717" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1621901151638">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
