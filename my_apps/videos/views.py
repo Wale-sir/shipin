@@ -13,4 +13,5 @@ class HomeView(View):
                 username=request.user
             )
             data['username'] = user.username
+        data['user'] = request.user.is_authenticated
         return render(request, 'home.html', data)
