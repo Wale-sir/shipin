@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from my_apps.videos.models import BaseModel
 # Create your models here.
 
 
@@ -49,3 +50,17 @@ class UserProfile(AbstractUser):
             return self.nick_name
         else:
             return self.username
+
+
+class UserFavour(BaseModel):
+    user = models.ForeignKey(
+        UserProfile,
+        on_delete=models.SET_NULL,
+        related_name='user_favour',
+        verbose_name='用户'
+    )
+
+
+    class Meta:
+        verbose_name = '用户收藏'
+        verbose_name_plural = verbose_name
