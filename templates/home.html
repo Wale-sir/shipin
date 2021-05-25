@@ -2,17 +2,18 @@
 {% block title %}
     首页
 {% endblock %}
-{% block css %}
-    <style>
-        .home {
-            background-color: yellow;
-            width: 40px;
-        }
-    </style>
-{% endblock %}
+
 {% block content %}
     <div class="home">
         首页
     </div>
     <a href="{% url 'user' %}">个人主页</a>
+    <a href="{% url 're' %}">注册</a>
+    <a href="{% url 'login' %}">登录</a>
+    <a href="{% url 'logout' %}">退出</a>
+    <div>
+        {%  if username %}
+            user:{{ username }}
+        {%  endif %}
+    </div>
 {% endblock %}
