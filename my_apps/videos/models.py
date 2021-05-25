@@ -110,7 +110,7 @@ class VideoSub(BaseModel):
     likes = models.IntegerField(default=0, verbose_name='点赞数')
 
     def __str__(self):
-        return ''.format(self.number)
+        return '{}'.format(self.number)
 
     class Meta:
         verbose_name = '集数'
