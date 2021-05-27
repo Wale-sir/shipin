@@ -8,7 +8,6 @@
         .head{
             background-color: #FF79A3;
             height: 100px;
-
         }
         .body{
             background-color: aqua;
@@ -21,37 +20,40 @@
 </head>
 <body>
 <div class="head">
-    <h1>
-        head
-    </h1>
-</div>
-
-
-<div class="body">
-    <h1>
-        body
-    </h1>
-    <div>
-    {% if user%}
+<h1>
+    head
+</h1>
+<div>
+    {% if user %}
             {% if  type != 'home'%}
                 <a href="{% url 'user' %}">个人主页</a>
                 {% else %}
                 <a href="{% url 'home' %}">首页</a>
             {% endif %}
-        <a href="{% url 'logout' %}">退出</a>
+            <a href="{% url 'logout' %}">退出</a>
     {% else%}
         <a href="{% url 're' %}">注册</a>
         <a href="{% url 'login' %}">登录</a>
     {% endif %}
-    {% block content %}
-    {% endblock %}
-    {% block custom_bread %}
-    {% endblock %}
+            {%  if username %}
+            user:{{ username }}
+    {%  endif %}
     </div>
+</div>
 
+
+<div class="body" style="height:auto;">
+    <h1>
+        body
+    </h1>
+    <div class="videos-label">
+        {% block custom_bread %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+    </div>
 </div>
 </body>
-
 
 <footer>
 <div class="foot">

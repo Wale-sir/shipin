@@ -7,20 +7,21 @@ from django.contrib.auth import login, logout, authenticate
 
 
 class UserView(View):
-
+    """用户界面"""
     def get(self, request):
         if not request.user.is_authenticated:
             return redirect(reverse('login'))
+        user = UserProfile.objects.get(username=request.user)
         return render(request, 'user.html', {
-            'type': 'home'
+            'type': 'home',
+            'user': user
         })
 
 
 class ReView(View):
+    """注册界面"""
     def get(self,request):
-        # form = Reform()
         return render(request,'re.html',{
-            # 'form': form
         })
 
     def post(self, request):
@@ -37,7 +38,7 @@ class ReView(View):
 
 
 class LoginView(View):
-
+    """登录界面"""
     def get(self,request):
         if request.user.is_authenticated:
             return redirect(reverse('home'))
@@ -57,7 +58,7 @@ class LoginView(View):
 
 
 class LogoutView(View):
-
+    """退出登录"""
     def get(self, request):
         logout(request)
         return redirect(reverse('home'))

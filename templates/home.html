@@ -4,12 +4,13 @@
 {% endblock %}
 
 {% block content %}
-    <div class="home">
-        首页
-    </div>
-    <div>
-        {%  if username %}
-            user:{{ username }}
-        {%  endif %}
-    </div>
+    <a href="{% url 'home' %}"></a>
+        <h2>这是所有的视频</h2>
+    {% for video in video_list %}
+        <div>
+            <img src="{{ video.image }}">
+            <br>
+            <a href="{% url 'video_sub' video.id %}">{{ video.name }}</a>
+        </div>
+    {% endfor %}
 {% endblock %}

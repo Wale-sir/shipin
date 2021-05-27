@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    视频观看页
+{% endblock %}
+
+{% block custom_bread %}
+    <a href="{% url 'home' %}">主页</a> >
+{% endblock %}
+{% block content %}
+    <div class="video">
+        {% for i in video_subs %}
+            {{ i.video.name }}
+            <span><a href="">第{{ i.number }}集</a></span>
+        {% endfor %}
+    </div>
+{% endblock %}
