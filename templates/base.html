@@ -8,13 +8,25 @@
         .head{
             background-color: #FF79A3;
             height: 100px;
+            position:relative;
         }
         .body{
             background-color: aqua;
+
         }
         .foot{
             background-color: antiquewhite;
+
         }
+        .box{
+        width:50%; margin-top:100%; margin:auto; padding:28px;
+        height:350px; border:1px #111 solid;
+        display:none;            /* 默认对话框隐藏 */
+    }
+    .box.show{display:block;position:relative;}
+    .box .box_x{ font-size:18px; text-align:right; display:block;position:relative;}
+    .box input{width:80%; font-size:18px; margin-top:18px;position:relative;background-color: #fff}
+
         </style>
     {% endblock %}
 </head>
@@ -32,8 +44,51 @@
             {% endif %}
             <a href="{% url 'logout' %}">退出</a>
     {% else%}
-        <a href="{% url 're' %}">注册</a>
-        <a href="{% url 'login' %}">登录</a>
+
+        <input type="button" onClick="msg_box(2)" value="点击注册">
+        <input type="button" onClick="msgbox(1)" value="点击登陆">
+
+    <script>
+        function msgbox(n){
+            document.getElementById('inputbox').style.display=n?'block':'none';     /* 点击按钮打开/关闭 对话框 */
+        }
+        function msg_box(n){
+            document.getElementById('input_box').style.display=n?'block':'none';     /* 点击按钮打开/关闭 对话框 */
+        }
+
+     </script>
+        <div id='input_box' class="box" style="background:#66ccff; color:#000">
+
+        <a class='box_x' onclick="msg_box(1); return false;">关闭</a> {#点击事件#}
+
+        <form action="{% url 're' %}" method="POST">
+        {% csrf_token %}
+            <label for="id_username">用户名:</label>
+            <input type="text" id="id_username" name="username" placeholder="用户名">
+            <label for="id_password">密码:</label>
+            <input type="password" id="id_password" name="password" placeholder="密码">
+            <label for="id_password">重复密码:</label>
+            <input type="password" id="id_password" name="check_password" placeholder="重复密码">
+            <button type="submit">提交</button>
+        {{ error }}
+        </div>
+
+        <div id='inputbox' class="box" style="background:#66ccff; color:#000">
+
+        <a class='box_x' onclick="msgbox(0); return false;">关闭</a>  {#点击事件#}
+
+         <form action="{% url 'login' %}" method="POST">
+             {% csrf_token %}
+                <label for="id_username">用户名:</label>
+                <input type="text" name="username" id="id_username"><br>
+                <label for="id_password">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+                <input type="password" name="password" id="id_password"><br><br><br>
+            <button type="submit">提交</button>
+             {{ error }}
+        </div>
+
+
+
     {% endif %}
             {%  if username %}
             user:{{ username }}
