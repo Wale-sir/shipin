@@ -6,10 +6,10 @@
 </head>
 <body>
     <h1>这是注册页面</h1>
-    <form action="{% url 're' %}" method="POST">
+    <form action="{% url 're_email' %}" method="POST">
         {% csrf_token %}
-        <label for="id_username">用户名:</label>
-        <input type="text" id="id_username" name="username" placeholder="用户名">
+        <label for="id_email">邮箱:</label>
+        <input type="text" id="id_email" name="email" placeholder="邮箱">
         <label for="id_password">密码:</label>
         <input type="password" id="id_password" name="password" placeholder="密码">
         <label for="id_password">重复密码:</label>
