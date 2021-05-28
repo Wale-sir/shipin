@@ -270,12 +270,12 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1621731060584" />
-    <state x="766" y="72" key="CommitChangelistDialog2" timestamp="1622208717235">
+    <state x="766" y="72" key="CommitChangelistDialog2" timestamp="1622209045910">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1621938195100" />
     <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1622161532982" />
-    <state x="766" y="72" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1622208717235" />
+    <state x="766" y="72" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1622209045910" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1622078671905">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -332,22 +332,23 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="71" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1621913449961" />
-    <state x="477" y="134" key="MultipleFileMergeDialog" timestamp="1622162867999">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state x="596" y="168" key="MultipleFileMergeDialog" timestamp="1622209088759">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="477" y="128" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1621913451639" />
     <state x="477" y="134" key="MultipleFileMergeDialog/0.0.1536.864@0.0.1536.864" timestamp="1622162867999" />
+    <state x="596" y="168" key="MultipleFileMergeDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1622209088759" />
     <state x="366" y="110" key="SettingsEditor" timestamp="1622166108561">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1621913463287" />
     <state x="366" y="110" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1622166108561" />
     <state x="338" y="72" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1622104775289" />
-    <state x="451" y="191" key="Vcs.Push.Dialog.v2" timestamp="1622125477782">
+    <state x="451" y="191" key="Vcs.Push.Dialog.v2" timestamp="1622209070180">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1621938208911" />
-    <state x="451" y="191" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1622125477782" />
+    <state x="451" y="191" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1622209070180" />
     <state x="562" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1622162845404">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
