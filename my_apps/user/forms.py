@@ -18,6 +18,13 @@ class Reform(forms.Form):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
         check_password = self.cleaned_data.get('check_password')
+
+        if len(username) < 5:
+            raise forms.ValidationError('用户名过短')
+        if len(password) < 6:
+            raise forms.ValidationError('密码过短')
+        if not username or not password or not check_password:
+            raise forms.ValidationError('请填写完整!')
         if password != check_password:
             raise forms.ValidationError('两次密码不一致')
 

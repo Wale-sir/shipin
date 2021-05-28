@@ -7,7 +7,7 @@ from .models import Video, VideoSub, VideoComment, VideoStar
 
 class HomeView(View):
     """主页 显示所有视频"""
-    def get(self, request):
+    def get(self, request,):
         data = {}
         if request.user.is_authenticated:
             user = UserProfile.objects.get(
