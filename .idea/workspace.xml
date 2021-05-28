@@ -2,32 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9fcd5f3-321e-4f3a-815d-28131911a1fa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/css/animate.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/aui.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/base.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/common-less.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/course-comment.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/learn-less.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/reset.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/video-js.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/code.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/send_email.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jv/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Jv/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_apps/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_apps/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_apps/user/user_url.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/user_url.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_apps/videos/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/videos/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/layer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/mobile/layer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/mobile/need/layer.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/icon-ext.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/layer.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/loading-0.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/loading-1.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/layer-v3.5.1/layer/theme/default/loading-2.gif" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/re.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/re.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,8 +39,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -105,7 +90,29 @@
       <recent name="E:\myproject\Jv\my_apps" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.send_email">
+    <configuration name="send_email" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Jv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/send_email.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Jv" type="Python.DjangoServer" factoryName="Django server">
       <module name="Jv" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -129,6 +136,11 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.send_email" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -168,7 +180,8 @@
       <workItem from="1622084455288" duration="2698000" />
       <workItem from="1622094099511" duration="1293000" />
       <workItem from="1622125919301" duration="9568000" />
-      <workItem from="1622159954911" duration="2671000" />
+      <workItem from="1622159954911" duration="13233000" />
+      <workItem from="1622175631356" duration="7903000" />
     </task>
     <task id="LOCAL-00001" summary="asd">
       <created>1621614368403</created>
@@ -275,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622085817880</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="登录 注册 界面修改 js提交">
+      <created>1622162838138</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1622162838142</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,7 +308,8 @@
     <MESSAGE value="这是一个测试2" />
     <MESSAGE value="videos" />
     <MESSAGE value="用户 admin 更改" />
-    <option name="LAST_COMMIT_MESSAGE" value="用户 admin 更改" />
+    <MESSAGE value="登录 注册 界面修改 js提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="登录 注册 界面修改 js提交" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Notifications" timestamp="1621642868752">
@@ -299,14 +320,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1621731060584" />
-    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1622162814898">
+    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1622183714614">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1622162814898" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1622131491895">
+    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1622183714614" />
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1622164885564">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1622131491895" />
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1622164885564" />
     <state x="619" y="313" key="Gitee.ShareDialog" timestamp="1621643496112">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -315,6 +336,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="644" y="303" width="272" height="217" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1621612560866" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1622175610701">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1622175610701" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1622175610701">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1622175610701" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1622175610701">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1622175610701" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1622175610701">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1622175610701" />
     <state width="212" height="477" key="HiddenNamespacesPopup" timestamp="1621731113765">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -331,21 +368,24 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1622081997384" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1622162825799">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1622162841375">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1622162825799" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1622162841375" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1622085274589">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1622085274589" />
-    <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1622125925972">
+    <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1622183684667">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1622125925972" />
+    <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1622183684667" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1621901563595">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1621901563595" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Jv$send_email.coverage" NAME="send_email Coverage Results" MODIFIED="1622165500137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
   </component>
 </project>

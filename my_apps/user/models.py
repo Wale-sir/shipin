@@ -108,3 +108,15 @@ class UserMessage(BaseModel):
 
     def __str__(self):
         return self.message
+
+
+# 邮箱--用来激活账号和找回密码
+class EmailPro(BaseModel):
+    code = models.CharField(max_length=20, verbose_name='验证码')
+    email = models.EmailField(max_length=50, verbose_name='邮箱')
+    send_type = models.CharField(max_length=10, choices=(('register', '邮箱注册'), ('forget', '忘记密码')), verbose_name='发送类型')
+    send_time = models.DateTimeField(auto_now_add=True, verbose_name='发送时间')
+
+    class Meta:
+        verbose_name = '邮箱验证码'
+        verbose_name_plural = verbose_name

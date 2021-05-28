@@ -49,15 +49,13 @@
             <a href="{% url 'logout' %}">退出</a>
     {% else%}
 
-        <input type="button" onClick="msg_box(2)" value="点击注册">
-        <input type="button" onClick="msgbox(1)" value="点击登陆">
+        <input class="box_x" type="button" onClick="re_box(2);login_box(0); return false;" value="点击注册">
+        <input class="box_x" type="button" onClick="login_box(1);re_box(0); return false;" value="点击登陆">
 
 
 {#        注册#}
-        <div id='input_box' class="box" style="background:#66ccff; color:#000">
-            <a class='box_x' onclick="msg_box(0); return false;">关闭</a> {#点击事件#}
-{#            <form action="{% url 're' %}" method="POST">#}
-{#            {% csrf_token %}#}
+        <div id='input_re_box' class="box" style="background:#66ccff; color:#000">
+            <a class='box_x' onclick="re_box(0); return false;">关闭</a> {#点击事件#}
                 <h1>用户注册</h1>
                 <label for="id_username">用户名:</label>
                 <input type="text" id="id_username" name="username" placeholder="用户名">
@@ -68,23 +66,41 @@
                 <label for="id_password">重复密码:</label>
                 <input type="password" id="id_check_password" name="check_password" placeholder="重复密码">
                 <button id="js_push_re" type="submit">提交</button>
+
+{#            点击 显示登录 关闭注册#}
+            <a class="box_x" onClick="login_box(1);re_box(0);return false; ">点击登录</a>
+            {#            点击之后 显示邮箱登录 关闭 用户名注册#}
+            <a class="box_x" onClick="re_email_box(3);re_box(0); return false;" >邮箱注册</a>
             {{ error }}
-{#            </form>#}
         </div>
 
 {#        登录#}
-        <div id='inputbox' class="box" style="background:#66ccff; color:#000">
-            <a class='box_x' onclick="msgbox(0); return false;">关闭</a>  {#点击事件#}
+        <div id='input_login_box' class="box" style="background:#66ccff; color:#000">
+            <a class='box_x' onclick="login_box(0); return false;">关闭</a>  {#点击事件#}
                 <h1>用户登录</h1>
-{#             <form action="{% url 'login' %}" method="POST">#}
-                 {% csrf_token %}
                     <label for="id_username">用户名:</label>
-                    <input type="text" name="username" id="id_login_username"><br>
+                    <input type="text" name="username" id="id_login_username" placeholder="用户名\邮箱"><br>
                     <label for="id_password">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
-                    <input type="password" name="password" id="id_login_password"><br><br><br>
+                    <input type="password" name="password" id="id_login_password" placeholder="密码"><br><br><br>
                 <button id="js_push_login"  type="submit">提交</button>
+{#            点击 显示登录#}
+            <a class="box_x" onClick="re_box(2);login_box(0);return false;">点击注册</a>
                  {{ error }}
-{#             </form>#}
+        </div>
+
+{#        邮箱验证登录 #}
+        <div id='input_email_box' class="box" style="background:#66ccff; color:#000">
+            <a class='box_x' onclick="re_email_box(0); return false;">关闭</a>  {#点击事件#}
+                <h1>邮箱注册</h1>
+                    <label for="id_username">邮&nbsp;&nbsp;&nbsp;&nbsp;箱:</label>
+                    <input type="text" name="email" id="id_email" placeholder="邮箱"><br>
+                    <label for="id_password">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+                    <input type="password" name="password" id="id_email_password" placeholder="密码"><br>
+                    <label for="id_password">重复密码:</label>
+                    <input type="password" name="id_check_password" id="id_email_check_password" placeholder="重复密码">
+                    <button id="js_push_email"  type="submit">提交</button>
+            <a class='box_x' onclick="re_box(2);re_email_box(0);return false; ">用户名注册</a>
+            {{ error }}
         </div>
     {% endif %}
 
@@ -118,20 +134,25 @@
 {% block custom_jss %}
 {% endblock %}
     <script type="text/javascript">
-        function msgbox(n){
-            document.getElementById('inputbox').style.display=n?'block':'none';     /* 点击按钮打开/关闭 对话框 */
+        {# 登录 #}
+        function login_box(n){
+            document.getElementById('input_login_box').style.display=n?'block':'none';     /* 点击按钮打开/关闭 对话框 */
+        }
+        {# 注册 #}
+        function re_box(n){
+            document.getElementById('input_re_box').style.display=n?'block':'none';     /* 点击按钮打开/关闭 对话框 */
         }
 
-        function msg_box(n){
-            document.getElementById('input_box').style.display=n?'block':'none';     /* 点击按钮打开/关闭 对话框 */
+        {# 邮箱注册 #}
+        function re_email_box(n) {
+            document.getElementById('input_email_box').style.display=n?'block':'none';
         }
-
         {# 登录验证 #}
         $(document).ready(function() {
             $('#js_push_login').on('click',
                 function () {
-                var username = $('#id_username').val();
-                var password = $('#id_password').val();
+                var username = $('#id_login_username').val();
+                var password = $('#id_login_password').val();
                 $.ajax({
                     cache:false,
                     type:'POST',
@@ -154,7 +175,7 @@
                     }
                 )
             }
-        )
+        );
 
         {# 注册验证登录 #}
         $(document).ready(function() {
@@ -169,6 +190,38 @@
                     url:'{% url 're' %}',
                     data:{
                         'username': username,
+                        'password': password,
+                        'check_password': check_password},
+                    async:true,
+                    beforeSend:function (xhr,setting) {
+                        xhr.setRequestHeader('X-CSRFToken','{{ csrf_token }}');
+                    },
+                    success:function (data) {
+                    if (data.status == 'fail'){
+                            alert(data.msg)
+                    }else if(data.status == 'success'){
+                            alert(data.msg);
+                        window.location.reload();
+                    }}
+                        })
+                    }
+                )
+            }
+        );
+
+        {# 邮箱注册登录 #}
+        $(document).ready(function() {
+            $('#js_push_email').on('click',
+                function () {
+                var email = $('#id_email').val();
+                var password = $('#id_email_password').val();
+                var check_password = $('#id_email_check_password').val();
+                $.ajax({
+                    cache:false,
+                    type:'POST',
+                    url:'{% url 're_email' %}',
+                    data:{
+                        'email': email,
                         'password': password,
                         'check_password': check_password},
                     async:true,

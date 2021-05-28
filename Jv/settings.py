@@ -54,6 +54,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Jv.urls'
 
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -76,12 +78,6 @@ WSGI_APPLICATION = 'Jv.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -140,3 +136,19 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # 创建UserProfile需要 重写user之后 需要加上
 AUTH_USER_MODEL = 'user.UserProfile'
+
+
+#  邮箱登录
+EMAIL_HOST = 'smtp.163.com'  # 163邮箱的 SMTP 地址
+
+EMAIL_PORT = 25     # SMTP端口
+
+EMAIL_HOST_USER = 'q1550363865@163.com'       # 我自己的邮箱
+
+EMAIL_HOST_PASSWORD = 'VXBLLITMWTKFYDCK'       # 我的邮箱授权码
+
+EMAIL_SUBJECT_PREFIX = '[django]'     # 为邮件Subject-line前缀,默认是'[django]'
+
+EMAIL_USE_TLS = False   # 与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
+
+EMAIL_FROM = 'q1550363865@163.com'  # 与 EMAIL_HOST_USER 相同
