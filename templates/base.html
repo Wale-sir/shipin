@@ -5,18 +5,46 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     {% block css %}
+        <script>
+	function show()  //显示隐藏层和弹出层
+	{
+	   var hideobj=document.getElementById("hidebg");
+	   hidebg.style.display="block";  //显示隐藏层
+	   //hidebg.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+	   document.getElementById("hidebox").style.display="block";  //显示弹出层
+	}
+	function show_1()  //显示隐藏层和弹出层
+	{
+	   var hideobj=document.getElementById("hidebg");
+	   hidebg.style.display="block";  //显示隐藏层
+	   //hidebg.style.height=document.body.clientHeight+"px";  //设置隐藏层的高度为当前页面高度
+	   document.getElementById("hidebox_1").style.display="block";  //显示弹出层
+	}
+	function hide()  //去除隐藏层和弹出层
+	{
+	   document.getElementById("hidebg").style.display="none";
+	   document.getElementById("hidebox").style.display="none";
+	}
+	function hide_1()  //去除隐藏层和弹出层
+	{
+	   document.getElementById("hidebg").style.display="none";
+	   document.getElementById("hidebox_1").style.display="none";
+	}
+</script>
         <style>
         .head{
             background-color: #FF79A3;
-            height: 100px;
+            height: 500px;
             position:relative;
+
         }
         .body{
             background-color: aqua;
-
+            z-Index:-1;
         }
         .foot{
             background-color: antiquewhite;
+            z-Index:-1;
 
         }
         .box{
@@ -27,10 +55,25 @@
     .box.show{display:block;position:relative;}
     .box .box_x{ font-size:18px; text-align:right; display:block;position:relative;}
     .box input{width:80%; font-size:18px; margin-top:18px;position:relative;background-color: #fff}
-
+    #hidebg { position:absolute;left:0px;top:0px;
+      background-color:grey;
+      width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+      height: 100%;
+      filter:alpha(opacity=60);  /*设置透明度为60%*/
+      opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+      display:none;
+      z-Index:1;}
+   #hidebox { text-align: right;position:absolute;
+       width:400px;height:300px;top:100px;left:30%;
+       border-radius: 5px;background-color:#66ccff;display:none;z-Index:9;padding: 10px;}
+   #hidebox_1 { text-align: right;position:absolute;
+       width:400px;height:300px;top:100px;left:30%;
+       border-radius: 5px;background-color:#66ccff;display:none;z-Index:3;padding: 10px;}
+   #content { text-align: center;cursor:pointer;z-Index:1;}
         </style>
     <script src="/static/js/jquery.min.js" type="text/javascript"></script>
-    <script src="/static/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery.min.js"></script>
+    <script src="/static/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script><script src="js/jquery.min.js"></script>
     {% endblock %}
 </head>
 <body>
@@ -49,15 +92,25 @@
             <a href="{% url 'logout' %}">退出</a>
     {% else%}
 
-        <input type="button" onClick="msg_box(2)" value="点击注册">
-        <input type="button" onClick="msgbox(1)" value="点击登陆">
+{#        <input type="button" onClick="msg_box(2)" value="点击注册">#}
+{#        <input type="button" onClick="msgbox(1)" value="点击登陆">#}
+        <div id="hidebg"></div>
+        <div id="hidebox">
 
+            {% csrf_token %}
+                <h1>用户登陆</h1>
+                    <label for="id_username">用户名:</label>
+                    <input type="text" name="username" id="id_login_username"><br>
+                    <label for="id_password">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+                    <input type="password" name="password" id="id_login_password"><br><br><br>
+                <button id="js_push_login"  type="submit">提交</button>
+                 {{ error }}
+            <span onClick="hide();" style="cursor:pointer;">关闭</span>
+        </div>
+	<div id="content" onClick="show();">点击登陆</div>
 
-{#        注册#}
-        <div id='input_box' class="box" style="background:#66ccff; color:#000">
-            <a class='box_x' onclick="msg_box(0); return false;">关闭</a> {#点击事件#}
-{#            <form action="{% url 're' %}" method="POST">#}
-{#            {% csrf_token %}#}
+        <div id="hidebox_1">
+                    {% csrf_token %}
                 <h1>用户注册</h1>
                 <label for="id_username">用户名:</label>
                 <input type="text" id="id_username" name="username" placeholder="用户名">
@@ -69,34 +122,10 @@
                 <input type="password" id="id_check_password" name="check_password" placeholder="重复密码">
                 <button id="js_push_re" type="submit">提交</button>
             {{ error }}
-{#            </form>#}
+            <span onClick="hide_1();" style="cursor:pointer;">关闭</span>
         </div>
-
-{#        登录#}
-        <div id='inputbox' class="box" style="background:#66ccff; color:#000">
-            <a class='box_x' onclick="msgbox(0); return false;">关闭</a>  {#点击事件#}
-                <h1>用户登录</h1>
-{#             <form action="{% url 'login' %}" method="POST">#}
-                 {% csrf_token %}
-                    <label for="id_username">用户名:</label>
-                    <input type="text" name="username" id="id_login_username"><br>
-                    <label for="id_password">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
-                    <input type="password" name="password" id="id_login_password"><br><br><br>
-                <button id="js_push_login"  type="submit">提交</button>
-                 {{ error }}
-{#             </form>#}
-        </div>
-    {% endif %}
-
-
-    {%  if username %}
-            user:{{ username }}
-    {%  endif %}
-    </div>
-</div>
-
-
-<div class="body" style="height:auto;">
+	<div id="content" onClick="show_1();">点击注册</div>
+        <div class="body" style="height:auto;">
     <h1>
         body
     </h1>
@@ -107,6 +136,50 @@
         {% endblock %}
     </div>
 </div>
+{#        注册#}
+{#        <div id='input_box' class="box" style="background:#66ccff; color:#000">#}
+{#            <a class='box_x' onclick="msg_box(0); return false;">关闭</a> {#点击事件#}
+{#            <form action="{% url 're' %}" method="POST">#}
+{#            {% csrf_token %}#}
+{#                <h1>用户注册</h1>#}
+{#                <label for="id_username">用户名:</label>#}
+{#                <input type="text" id="id_username" name="username" placeholder="用户名">#}
+{#                <br>#}
+{#                <label for="id_password">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>#}
+{#                <input type="password" id="id_password" name="password" placeholder="密码">#}
+{#                <br>#}
+{#                <label for="id_password">重复密码:</label>#}
+{#                <input type="password" id="id_check_password" name="check_password" placeholder="重复密码">#}
+{#                <button id="js_push_re" type="submit">提交</button>#}
+{#            {{ error }}#}
+{#            </form>#}
+{#        </div>#}
+
+{#        登录#}
+{#        <div id='inputbox' class="box" style="background:#66ccff; color:#000">#}
+{#            <a class='box_x' onclick="msgbox(0); return false;">关闭</a>  {#点击事件#}
+{#                <h1>用户登录</h1>#}
+{#             <form action="{% url 'login' %}" method="POST">#}
+{#                 {% csrf_token %}#}
+{#                    <label for="id_username">用户名:</label>#}
+{#                    <input type="text" name="username" id="id_login_username"><br>#}
+{#                    <label for="id_password">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>#}
+{#                    <input type="password" name="password" id="id_login_password"><br><br><br>#}
+{#                <button id="js_push_login"  type="submit">提交</button>#}
+{#                 {{ error }}#}
+{#             </form>#}
+{#        </div>#}
+    {% endif %}
+
+
+    {%  if username %}
+            user:{{ username }}
+    {%  endif %}
+    </div>
+</div>
+
+
+
 </body>
 
 <footer>
