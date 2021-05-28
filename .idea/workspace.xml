@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9fcd5f3-321e-4f3a-815d-28131911a1fa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/code.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/send_email.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jv/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Jv/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_apps/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_apps/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_apps/user/user_url.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/user_url.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/re.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/re.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +171,7 @@
       <workItem from="1622094099511" duration="1293000" />
       <workItem from="1622125919301" duration="9568000" />
       <workItem from="1622159954911" duration="13233000" />
-      <workItem from="1622175631356" duration="7903000" />
+      <workItem from="1622175631356" duration="8156000" />
     </task>
     <task id="LOCAL-00001" summary="asd">
       <created>1621614368403</created>
@@ -295,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622162838142</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="登录(可以使用邮箱登录),注册,邮箱注册 已经功能完善, 目前还差手机注册功能">
+      <created>1622183798130</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1622183798130</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +306,8 @@
     <MESSAGE value="videos" />
     <MESSAGE value="用户 admin 更改" />
     <MESSAGE value="登录 注册 界面修改 js提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="登录 注册 界面修改 js提交" />
+    <MESSAGE value="登录(可以使用邮箱登录),注册,邮箱注册 已经功能完善, 目前还差手机注册功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="登录(可以使用邮箱登录),注册,邮箱注册 已经功能完善, 目前还差手机注册功能" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Notifications" timestamp="1621642868752">
@@ -320,10 +318,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1621731060584" />
-    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1622183714614">
+    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1622183796665">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1622183714614" />
+    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1622183796665" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1622164885564">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -368,10 +366,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1622081997384" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1622162841375">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1622190667793">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1622162841375" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1622190667793" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1622085274589">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

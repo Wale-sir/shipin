@@ -90,14 +90,12 @@ class LoginForm(forms.Form):
         if re.search(r'[0-9a-zA-Z_]{0,19}@[0-9a-zA-Z]{1,13}\.[com,cn,net]{1,3}', str(username)):
 
             #  用户邮箱 查找
-            user = UserProfile.objects.get(email=username)
+            user = UserProfile.objects.filter(email=username)
             if not user:
                 raise forms.ValidationError('用户不存在')
 
-
             if not check_password(password,user.password):
                 raise forms.ValidationError('密码错误')
-
 
             # user = authenticate(email=username, password=password)
             # print(user)
