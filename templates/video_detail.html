@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ video.name }}
+{% endblock %}
+
+
+{% block custom_bread %}
+    <a href="{% url 'home' %}">主页</a> >
+    <span>{{ video.name }}&nbsp; 第{{ video_sub.number }}集</span>
+{% endblock %}
+{% block content %}
+    <div class="video">
+        <video src="{{ video_sub.url }}" controls="controls" style="width: 1200px"></video>
+    {% for video_sub in all_video_subs %}
+        <a  href='{% url 'video_detail' video.id %}?video_sub_number={{ video_sub.number }}'  id="video_sub_bu{{ video_sub.number }}" >
+            <button>第{{ video_sub.number }}集</button>
+        </a>
+    {% endfor %}
+    </div>
+{% endblock %}
+
+{% block custom_jss %}
+{% endblock %}

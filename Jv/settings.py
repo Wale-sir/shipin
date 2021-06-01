@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'my_apps.user',
+    'my_apps.videos'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +53,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Jv.urls'
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
 
 TEMPLATES = [
     {
@@ -75,11 +80,15 @@ WSGI_APPLICATION = 'Jv.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'myjv',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
+        'PORT': '3306'
     }
-}
 
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -118,4 +127,28 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# 静态文件
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# 创建UserProfile需要 重写user之后 需要加上
+AUTH_USER_MODEL = 'user.UserProfile'
+
+
+#  邮箱登录
+EMAIL_HOST = 'smtp.163.com'  # 163邮箱的 SMTP 地址
+
+EMAIL_PORT = 25     # SMTP端口
+
+EMAIL_HOST_USER = 'q1550363865@163.com'       # 我自己的邮箱
+
+EMAIL_HOST_PASSWORD = 'VXBLLITMWTKFYDCK'       # 我的邮箱授权码
+
+EMAIL_SUBJECT_PREFIX = '[django]'     # 为邮件Subject-line前缀,默认是'[django]'
+
+EMAIL_USE_TLS = False   # 与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
+
+EMAIL_FROM = 'q1550363865@163.com'  # 与 EMAIL_HOST_USER 相同

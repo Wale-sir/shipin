@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}
+    首页
+{% endblock %}
+
+{% block content %}
+    <style>
+        body,p,h1,ul,ol,li,input{
+                        margin: 0;
+                        padding: 0;
+                        }
+
+        h2{
+            width: 100px;
+            height: 30px;
+            background-color: black;
+            border-radius:30px;
+            font-size: 10px;
+            color: gold;
+            text-align:center;
+            line-height:30px;
+            margin:10px
+
+        }
+        h2:hover{
+            background-color: rgb(1, 120, 255);
+            color: rgb(255, 255, 255);
+            transition:0.5s;
+
+        }
+
+    </style>
+    {% if msg == 're_em_msg' %}
+        <script>
+            alert('邮件发送成功!请确认');
+        </script>
+    {% endif %}
+
+    <a href="{% url 'home' %}"></a>
+        <h2>这是所有的视频</h2>
+    {% for video in video_list %}
+        <div>
+            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ video.image }}"></a>
+            <br>
+            <a href="{% url 'video_detail' video.id %}?video_sub_number=1">{{ video.name }}</a>
+        </div>
+    {% endfor %}
+{% endblock %}

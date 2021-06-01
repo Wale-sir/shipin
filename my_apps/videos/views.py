@@ -1,0 +1,71 @@
+from django.shortcuts import render, redirect, reverse
+from django.views.generic import View
+from my_apps.user.models import UserProfile
+from .models import Video, VideoSub, VideoComment, VideoStar, VideoHistory
+from .forms import VideoHistoryForm
+from django.http import JsonResponse
+from datetime import datetime
+from my_apps.user.forms import LoginForm, Reform
+
+# Create your views here.
+
+
+class HomeView(View):
+    """主页 显示所有视频"""
+    def get(self, request,):
+        data = {}
+        if request.user.is_authenticated:
+            user = UserProfile.objects.get(
+                username=request.user
+            )
+            data['username'] = user.username
+        data['user_is_au'] = request.user.is_authenticated
+        data['login_form'] = LoginForm()
+        video_list = Video.objects.all()
+        data['video_list'] = video_list
+
+        return render(request, 'home.html', data)
+
+
+class VideoDetailView(View):
+    """视频观看页"""
+    def get(self, request, video_id):
+        data = {}
+
+        # 判定是否登陆
+        data['user_is_au'] = request.user.is_authenticated
+        data['user'] = request.user.id
+        # 获取视频
+        video = Video.objects.get(id=video_id)
+        data['video'] = video
+
+        video.mood += 1
+        video.save()
+        # 获取集数
+        video_sub_number = request.GET.get('video_sub_number')
+
+        # 获取这个视频的某一集
+        data['video_sub'] = VideoSub.objects.get(video=video, number=video_sub_number)
+
+        # 存储观看记录
+        if data['user_is_au']:
+            self.history_save(request.user,video=video,sub=video_sub_number)
+
+        # 获取这个视频的所有集数
+        data['all_video_subs'] = VideoSub.objects.filter(video=video_id)
+
+        # 这个视频的所有评论
+        data['all_comments'] = VideoComment.objects.filter(video=video_id)
+
+        # 这个视频的所有演员
+        data['all_stats'] = VideoStar.objects.filter(video=video_id)
+        return render(request, 'video_detail.html',data)
+
+    def history_save(self, user, video, sub):
+        """视频记录存储"""
+        vid_hty = VideoHistory.objects.filter(user=user, video=video, sub=sub)
+        if vid_hty:
+            vid_hty.modify_time = datetime.now()
+        else:
+            VideoHistory.objects.create(user=user,video=video, sub=sub)
+

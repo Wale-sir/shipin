@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+<h2>这是登录界面</h2>
+<div>
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        用户名\邮箱: {{ login_form.username }}
+        密码:{{ login_form.password }}
+        <button type="submit">提交</button>
+    </form>
+    {{ error }}
+    <a href="{% url 're' %}">注册</a>
+</div>
+
+</body>
+</html>

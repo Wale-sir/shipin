@@ -1,8 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9fcd5f3-321e-4f3a-815d-28131911a1fa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e9fcd5f3-321e-4f3a-815d-28131911a1fa" name="Default Changelist" comment="返璞归真">
+      <change afterPath="$PROJECT_DIR$/media/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/migrations/0002_userfavorite_usermessage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/migrations/0003_emailpro.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/migrations/0004_userfavorite_fav_type.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/user_url.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/user/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0002_auto_20210525_1023.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0003_auto_20210525_1026.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0004_auto_20210525_1042.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0005_auto_20210525_1050.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0006_auto_20210525_1053.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0007_auto_20210525_1053.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0008_auto_20210525_1055.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0009_auto_20210525_1055.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0010_videoprogress.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0011_auto_20210528_2033.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0012_auto_20210528_2212.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0013_auto_20210529_2249.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/0014_auto_20210529_2313.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/videos_urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_apps/videos/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/animate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/aui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/common-less.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/course-comment.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/learn-less.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/reset.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/video-js.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/deco-common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/jquery-migrate-1.2.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/laydate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/datePicker/mobiscroll.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/datePicker/mobiscroll.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/jquery.flexslider-min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/jquery.raty.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/jquery.scrollLoading.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/jquery.timer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/jquery.upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/laydate/laydate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/laydate/need/laydate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/laydate/skins/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/laydate/skins/default/laydate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/layer/extend/layer.ext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/layer/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/layer/skin/default/icon-ext.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/layer/skin/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/layer/skin/default/loading-0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/layer/skin/default/loading-1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/layer/skin/default/loading-2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/layer/skin/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/layer/skin/layer.ext.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/css/cityLayout.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/images/Thumbs.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/images/bg_mc_0113_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/images/bg_mc_0113_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/images/bg_mc_0113_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/images/bg_mc_0113_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/images/bg_mc_0130_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/images/bg_mc_0130_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/images/ts-indexcity.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/js/public.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/js/public2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/js/queryAllAreas.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/js/queryAllProvinces.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/queryCity/js/queryCities.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/unslider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/plugins/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/selectUi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/validateDialog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/video.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/code.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/video_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/send_email.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Jv.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Jv.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jv/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Jv/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jv/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Jv/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jv/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Jv/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/test2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/user_url.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +151,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1sqWIWkXYaJnB2FKTLgyTrq5sCX" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -146,13 +267,20 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1621611969848" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1621658531420">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1622507635110">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1621658531420" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1622507635110" />
+    <state x="117" y="102" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1622507684863">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="117" y="102" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1622507684863" />
     <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1621615718760">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1621615718760" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Jv$send_email.coverage" NAME="send_email Coverage Results" MODIFIED="1622165500137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
   </component>
 </project>
