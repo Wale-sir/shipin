@@ -1,27 +1,13 @@
+{% extends 'base.html' %}
 {% load static %}
-
 <html lang="zh">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{% block title %}个人主页{% endblock %}</title>
-	<link rel="stylesheet" type="text/css" href="/static/css/reset2.css" />
-	<link rel="stylesheet" type="text/css" href="/static/css/default2.css">
-	<!-- Styles -->
-    <link href="/static/css/sty1.css" rel="stylesheet">
-
-    <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,500,700,800' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href="http://cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
-<body>
-    {% block index %}
+<title>{% block title %}个人主页{% endblock %}</title>
+{% block h1%}个人主页{% endblock %}
+{% block content %}
 	<div id="container">
         <div id="canvas">
             <div id="nav">
-                <h2 id="title"><i class="fa fa-sitemap"></i> Amzons</h2>
+                <h3 id="title"><i class="fa fa-sitemap"></i> Amzons</h3>
                     <ul id="toggle">
                     <li>
                         <div class="active border">
@@ -50,7 +36,7 @@
              </div>
             <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
             <div class="htmleaf-container">
-                {% block content %}
+                {% block header %}
 				<header class="htmleaf-header">
 					<h1>这里是个人主页 </h1>
 				</header>
@@ -62,10 +48,4 @@
      </div>
     {% endblock %}
 
-            
-	
-	<!-- Scripts -->
-    <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/js/custom.js"></script>
-</body>
 </html>

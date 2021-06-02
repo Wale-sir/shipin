@@ -1,20 +1,15 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block title %}
-    关注记录
+    订阅记录
 {% endblock %}
-{% block index%}
+{% block h1%}订阅记录{% endblock %}
+{% block content%}
     <div id="container">
         <div id="canvas">
             <div id="nav">
-                <h2 id="title"><i class="fa fa-sitemap"></i> Amzons</h2>
+                <h3 id="title"><i class="fa fa-sitemap"></i> Amzons</h3>
                     <ul id="toggle">
-                    <li>
-                        <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'index' %}">返回个人主页</a>
-                        </div>
-                    </li>
-
                     <li>
                         <div class="active border">
                             <span class="menu-icons fa fa-home"></span>   <a href="{% url 'record' %}">观看记录</a>
@@ -29,6 +24,11 @@
                         <li>
                         <div class="active border">
                             <span class="menu-icons fa fa-home"></span>   <a href="{% url 'user' %}">个人中心</a>
+                        </div>
+                    </li>
+                        <li>
+                        <div class="active border">
+                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'index' %}">返回个人主页</a>
                         </div>
                     </li>
                 </ul>
