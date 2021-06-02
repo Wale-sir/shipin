@@ -164,3 +164,31 @@ class VideoComment(BaseModel):
         verbose_name_plural = verbose_name
 
 
+class VideoHistory(BaseModel):
+    """存放最后一次观看视频的集数"""
+    video = models.ForeignKey(
+        Video,
+        on_delete=models.CASCADE,
+        related_name='video_history',
+        verbose_name='视频'
+    )
+    user = models.ForeignKey(
+        UserProfile,
+        on_delete=models.CASCADE,
+        related_name='video_his_user',
+        verbose_name='用户'
+    )
+    sub = models.IntegerField(
+        default=1,
+        verbose_name='集数'
+    )
+
+    def __str__(self):
+        return self.video.name
+
+    class Meta:
+        verbose_name = '历史记录'
+        verbose_name_plural = verbose_name
+
+
+

@@ -1,50 +1,47 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    个人中心
+    个人信息页
 {% endblock %}
-{% block h1%}个人中心{% endblock %}
+
 {% block content %}
     <h3>
-        这是个人中心
+        这是个人信息页
     </h3>
-    用户名:
-        {{ user.username }}
 
-	<div id="container">
-        <div id="canvas">
-            <div id="nav">
-                <h2 id="title"><i class="fa fa-sitemap"></i> Amzons</h2>
-                    <ul id="toggle">
-                    <li>
-                        <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="">修改密码</a>
-                        </div>
-                    </li>
+    用户头像<label>{{ user.image }}</label>
+    <br>
+    昵称:<label>{{ user.nick_name }}</label>
+    <br>
+    性别:<label>{{ user.gender }}</label>
+    <br>
+    手机:<label>{{ user.mobile }}</label>
+    <br>
+    生日:<label>{{ user.birthday }}</label>
+    <br>
+    用户名:<label>{{ user.username }}</label>
+    <br>
+    用户邮箱:<label>{{ user.email }}</label>
+    <br>
 
-                    <li>
-                        <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="">修改绑定邮箱</a>
-                        </div>
-                    </li>
+    <div class="my_fav">
+        <h3>我的收藏</h3>
+        <h4>视频</h4>
+        {% for video in all_videos %}
+            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ video.image }}"/></a>
+                <label>{{ video.name }}</label>
+        {% endfor %}
 
-                    <li>
-                        <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="">修改账户信息</a>
-                        </div>
-                    </li>
+        <h3>历史观看</h3>
+        {% for history in all_video_history %}
+            <a href="{% url 'video_detail' history.video.id %}?video_sub_number={{ history.sub }}">
+                <img src="{{ history.video.image }}">
+            <label>{{ history.video.name }}</label>
+            <button>第{{ history.sub }}集</button>
+            </a>
 
-                        <li>
-                        <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'index' %}">返回个人主页</a>
-                        </div>
-                    </li>
-                </ul>
-             </div>
-            <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
-            <div class="htmleaf-container">
+        {% endfor %}
+    </div>
 
-			</div>
-         </div>
-     </div>
-    {% endblock %}
+
+{% endblock %}

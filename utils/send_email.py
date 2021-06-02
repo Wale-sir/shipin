@@ -32,6 +32,6 @@ def send_register_email(email, send_type='register'):  # 类型为注册
         email_body = '请点击下方的链接激活你的账号：http://127.0.0.1:8000/user/active/{0}'.format(code)
     else:
         pass  # 忘记密码--暂时不写
-    send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])  # 注释 ①
+    send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])
     if send_status:
         pass

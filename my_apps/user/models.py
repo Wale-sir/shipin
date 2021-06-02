@@ -8,6 +8,10 @@ GENDER_CHOICE = (
     ('male','男'),
     ('female','女')
 )
+FAV_TYPE = (
+    ('1','视频'),
+    ('2','演员'),
+)
 
 
 class BaseModel(models.Model):
@@ -48,7 +52,7 @@ class UserProfile(AbstractUser):
     image = models.ImageField(
         verbose_name='头像',
         upload_to='head_image/%Y/%m',
-        default='default.jpg'
+        default='default1.jpg'
     )
 
     class Meta:
@@ -71,6 +75,13 @@ class UserFavorite(BaseModel):
     )
     fav_id = models.IntegerField(
         verbose_name='数据id'
+    )
+
+    fav_type = models.CharField(
+        default='1',
+        max_length=5,
+        choices=FAV_TYPE,
+        verbose_name='收藏类型'
     )
 
     class Meta:

@@ -2,7 +2,7 @@
 {% block title %}
     首页
 {% endblock %}
-{% block h1%}首页{% endblock %}
+
 {% block content %}
     <style>
         body,p,h1,ul,ol,li,input{
@@ -30,57 +30,19 @@
         }
 
     </style>
+    {% if msg == 're_em_msg' %}
+        <script>
+            alert('邮件发送成功!请确认');
+        </script>
+    {% endif %}
+
     <a href="{% url 'home' %}"></a>
         <h2>这是所有的视频</h2>
-
-
     {% for video in video_list %}
         <div>
-            <img src="{{ video.image }}">
+            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ video.image }}"></a>
             <br>
-            <a href="{% url 'video_sub' video.id %}">{{ video.name }}</a>
+            <a href="{% url 'video_detail' video.id %}?video_sub_number=1">{{ video.name }}</a>
         </div>
-
     {% endfor %}
-<div id="container">
-        <div id="canvas">
-            <div id="nav">
-                <h3 id="title"><i class="fa fa-sitemap"></i> Amzons</h3>
-                    <ul id="toggle">
-                    <li>
-                        <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'index' %}">个人主页</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'user' %}">个人中心</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'follow' %}">订阅列表</a>
-                        </div>
-                    </li>
-                        <li>
-                        <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'record' %}">观看记录</a>
-                        </div>
-                    </li>
-
-
-                </ul>
-             </div>
-            <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
-            <div class="htmleaf-container">
-                {% block header %}
-				<header class="htmleaf-header">
-					<h1>这里是首页</h1>
-				</header>
-                    用户名:
-                    {{ user.username }}
-                {% endblock %}
-			</div>
-         </div>
-     </div>
 {% endblock %}

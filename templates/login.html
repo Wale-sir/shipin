@@ -2,22 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>登录页</title>
-
+    <title>登录</title>
 </head>
 <body>
-    <h1>这是登录页</h1>
-    <form action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
-        <label for="id_username">用户名:</label>
-        <input type="text" name="username" id="id_username">
-        <label for="id_password">密码:</label>
-        <input type="password" name="password" id="id_password">
-    <button type="submit">提交</button>
-    {{ error }}
+<h2>这是登录界面</h2>
+<div>
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        用户名\邮箱: {{ login_form.username }}
+        密码:{{ login_form.password }}
+        <button type="submit">提交</button>
     </form>
-    <a href="{% url 'home' %}">主页</a>
+    {{ error }}
     <a href="{% url 're' %}">注册</a>
+</div>
 
 </body>
 </html>
