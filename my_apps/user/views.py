@@ -176,5 +176,12 @@ class ActiveUserView(View):
                 'status': False,
                 'msg': '验证失败!'
             })
+class IndexView(View):
+    """个人界面"""
+
+    def get(self,request):
+        return render(request, 'index.html'
+        )
+
 
 

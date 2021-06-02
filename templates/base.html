@@ -41,7 +41,7 @@
 <div>
     {% if user_is_au %}
             {% if  type != 'home'%}
-                <a href="{% url 'user' %}">个人主页</a>
+                <a href="{% url 'index' %}">个人主页</a>
                 {% else %}
                 <a href="{% url 'home' %}">首页</a>
             {% endif %}

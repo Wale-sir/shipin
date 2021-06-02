@@ -2,7 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9fcd5f3-321e-4f3a-815d-28131911a1fa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/default2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/normalize.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/reset2.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/sty1.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/custom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jv/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Jv/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_apps/user/user_url.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/user_url.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +55,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -53,13 +69,22 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="settings.gitee" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\2021\Jv\static\js" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Django server.Jv">
+    <configuration name="register.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Jv/templates/register.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="Jv" type="Python.DjangoServer" factoryName="Django server">
       <module name="Jv" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="Jv.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -77,6 +102,11 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.register.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -93,6 +123,10 @@
       <workItem from="1621612690511" duration="1846000" />
       <workItem from="1621614571659" duration="172000" />
       <workItem from="1621615692715" duration="363000" />
+      <workItem from="1622514882747" duration="3262000" />
+      <workItem from="1622540372699" duration="3084000" />
+      <workItem from="1622544005206" duration="3753000" />
+      <workItem from="1622592178426" duration="724000" />
     </task>
     <task id="LOCAL-00001" summary="asd">
       <created>1621614368403</created>
@@ -129,6 +163,7 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="asd" />
     <MESSAGE value="123" />
     <MESSAGE value="这是一个测试" />
@@ -156,6 +191,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="644" y="303" width="272" height="217" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1621612560866" />
+    <state width="1002" height="100" key="GridCell.Tab.0.bottom" timestamp="1622547783704">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1002" height="100" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1622547783704" />
+    <state width="1002" height="100" key="GridCell.Tab.0.center" timestamp="1622547783704">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1002" height="100" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1622547783704" />
+    <state width="1002" height="100" key="GridCell.Tab.0.left" timestamp="1622547783704">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1002" height="100" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1622547783704" />
+    <state width="1002" height="100" key="GridCell.Tab.0.right" timestamp="1622547783704">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1002" height="100" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1622547783704" />
+    <state x="841" y="88" key="RollbackChangesDialog" timestamp="1622541697377">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="841" y="88" key="RollbackChangesDialog/0.0.1536.864@0.0.1536.864" timestamp="1622541697377" />
     <state x="270" y="55" key="SettingsEditor" timestamp="1622508079273">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -168,10 +223,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="117" y="102" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1622507684863" />
+    <state x="603" y="153" key="com.intellij.ide.util.TipDialog" timestamp="1622592247584">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="603" y="153" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1622592247584" />
     <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1621615718760">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1621615718760" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/my_apps/user/views.py</url>
+          <line>108</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Jv$send_email.coverage" NAME="send_email Coverage Results" MODIFIED="1622165500137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
