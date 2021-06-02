@@ -8,10 +8,6 @@ GENDER_CHOICE = (
     ('male','男'),
     ('female','女')
 )
-FAV_TYPE = (
-    ('1','视频'),
-    ('2','演员'),
-)
 
 
 class BaseModel(models.Model):
@@ -75,13 +71,6 @@ class UserFavorite(BaseModel):
     )
     fav_id = models.IntegerField(
         verbose_name='数据id'
-    )
-
-    fav_type = models.CharField(
-        default='1',
-        max_length=5,
-        choices=FAV_TYPE,
-        verbose_name='收藏类型'
     )
 
     class Meta:

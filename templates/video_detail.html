@@ -1,107 +1,17 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}
-    {{ video.name }}
+    视频观看页
 {% endblock %}
-
 
 {% block custom_bread %}
     <a href="{% url 'home' %}">主页</a> >
-    <span>{{ video.name }}&nbsp; 第{{ video_sub.number }}集</span>
 {% endblock %}
 {% block content %}
     <div class="video">
-        <video src="{{ video_sub.url }}" controls="controls" style="width: 1200px"></video>
-    {% for video_sub in all_video_subs %}
-        <a  href='{% url 'video_detail' video.id %}?video_sub_number={{ video_sub.number }}'  id="video_sub_bu{{ video_sub.number }}" >
-            <button>第{{ video_sub.number }}集</button>
-        </a>
-    {% endfor %}
-    </div>
-
-{#    评论 #}
-        <div id="js-pub-container" class="issques clearfix js-form">
-            <div class="wgt-ipt-wrap pub-editor-wrap" id="js-pi-input-fake">
-                <textarea id="js-pl-textarea" placeholder="请输入评论内容"></textarea>
-            </div>
-            <input type="submit" id="js-pl-submit" class="pub-btn" data-cid="452" value="发表评论">
-
-            <p class="global-errortip js-global-error">{{ error }}</p>
-        </div>
-
-        <div class="ui comments" style="border: none">
-    <h2>评论</h2>
-        {% for comment in all_comments %}
-    <div class="comment">
-        <div class="avatar">
-            <img src="/static/{{ comment.user.image }}" style="width: 30px; height: 30px">
-        </div>
-        <div class="content">
-            <div class="metadata">
-                <div class="date">{{ comment.add_time }}</div>
-            </div>
-            <p class="text" style="font-family: 'Raleway', sans-serif;" >
-                {{ comment.comment }}
-            </p>
-            <p class="text" style="font-family: 'Raleway', sans-serif;color:red;">
-                回复
-            </p>
-        </div>
+        {% for i in video_subs %}
+            {{ i.video.name }}
+            <span><a href="">第{{ i.number }}集</a></span>
         {% endfor %}
     </div>
-        </div>
-{% endblock %}
-
-
-{% block custom_jss %}
-
-
-<script type="text/javascript">
-    {# 点击发表评论的js #}
-    $(document).ready(function () {
-        {# id用# class用. #}
-        $('#js-pl-submit').on('click',function () {
-            {# 点击之后的动作 #}
-            {# 根据id查找对应文本框 #}
-            var comments= $('#js-pl-textarea').val();
-            {# 如果评论内容为空 #}
-            if ( comments == "" ){
-                alert('评论内容不能为空');
-            }
-            {# 异步存储 ajax #}
-            $.ajax({
-                cache:false,
-                type:"POST",
-                url:'{% url "add_comment" %}',
-                data:{'video':  '{{ video.id }}',
-                    'video_sub': {{ video_sub }},
-                    'comment': comments },
-            {# 异步存储 #}
-            {#    async:true,#}
-            {# 参数xhr,setting #}
-                beforeSend:function (xhr,setting) {
-                    xhr.setRequestHeader('X-CSRFToken','{{ csrf_token }}');
-                },
-                success:function (data) {
-                    if (data.status == 'fail'){
-                        if (data.msg == '用户未登录'){
-                            window.location.href = "{% url 'login' %}";
-                        }else{
-                            alert(data.msg);
-                        }
-                    }else if(data.status == 'success'){
-                        var html = "";
-                          for(var i=0;i<data.length;i++){    //遍历data数组
-                               var ls = data[i];
-                               html +="<li><a href='second page text.html?newsid="+ls.video+"'class='infNews_wrod_a'><span>"+ls.news_name+"</span></a><span class='date'>"+ls.time+"</span></li>";
-                           }
-                           $("#comment-list").html(html); //在html页面id=ulul的标签里显示html内容
-                    }
-                }
-            })
-        })
-    });
-
-</script>
 {% endblock %}

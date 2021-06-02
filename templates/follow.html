@@ -1,39 +1,31 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
-    个人中心
+    订阅记录
 {% endblock %}
-{% block h1%}个人中心{% endblock %}
-{% block content %}
-    <h3>
-        这是个人中心
-    </h3>
-    用户名:
-        {{ user.username }}
-
-	<div id="container">
+{% block h1%}订阅记录{% endblock %}
+{% block content%}
+    <div id="container">
         <div id="canvas">
             <div id="nav">
-                <h2 id="title"><i class="fa fa-sitemap"></i> Amzons</h2>
+                <h3 id="title"><i class="fa fa-sitemap"></i> Amzons</h3>
                     <ul id="toggle">
                     <li>
                         <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="">修改密码</a>
+                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'record' %}">观看记录</a>
                         </div>
                     </li>
 
-                    <li>
+                        <li>
                         <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="">修改绑定邮箱</a>
+                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'home' %}">返回首页</a>
                         </div>
                     </li>
-
-                    <li>
+                        <li>
                         <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="">修改账户信息</a>
+                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'user' %}">个人中心</a>
                         </div>
                     </li>
-
                         <li>
                         <div class="active border">
                             <span class="menu-icons fa fa-home"></span>   <a href="{% url 'index' %}">返回个人主页</a>
@@ -43,8 +35,16 @@
              </div>
             <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
             <div class="htmleaf-container">
+                {% block header %}
+				<header class="htmleaf-header">
+					<h1>这里是订阅列表</h1>
+				</header>
 
+				<h3>这是订阅列表</h3>
+                    用户名:
+                    {{ user.username }}
+                {% endblock %}
 			</div>
          </div>
      </div>
-    {% endblock %}
+{% endblock %}

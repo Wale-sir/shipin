@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Video, VideoSub, VideoStar, VideoComment, VideoHistory
+from .models import Video, VideoSub, VideoStar, VideoComment
 
 # Register your models here.
 
@@ -29,15 +29,9 @@ class VideoCommentAdmin(admin.ModelAdmin):
     list_filter = ['video']
 
 
-class VideoHistoryAdmin(admin.ModelAdmin):
-    list_display = ['video', 'user', 'sub']
-    search_fields = ['video', 'user']
-
-
 admin.site.register(Video, VideoAdmin)
 admin.site.register(VideoSub, VideoSubAdmin)
 admin.site.register(VideoStar, VideoStarAdmin)
 admin.site.register(VideoComment, VideoCommentAdmin)
-admin.site.register(VideoHistory, VideoHistoryAdmin)
 
 
