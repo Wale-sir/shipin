@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            background-color: #EAEAEA;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+
+        }
+        .center-in-center{
+            position: absolute;
+            top: 10%;
+            left: 50%;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>注册</title>
 </head>
 <body>
-<h1>注册页面</h1>
-<div>
+<h1 align="center">注册页面</h1>
+<div class="center-in-center">
     {% if means == 'email' %}
         <form action="{% url 're_email' %}" method="POST">
             {% csrf_token %}
@@ -23,8 +41,10 @@
         <form action="{% url 're' %}" method="POST">
             {% csrf_token %}
             用户名:{{ re_form.username }}
-            密码:{{ re_form.password }}
-            再次输入:{{ re_form.check_password }}
+            <br>
+            密码:<br>{{ re_form.password }}
+            <br>
+            再次输入:<br>{{ re_form.check_password }}
             <button type="submit">提交</button>
         </form>
         {{ error }}
