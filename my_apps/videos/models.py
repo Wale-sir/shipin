@@ -143,6 +143,13 @@ class VideoComment(BaseModel):
         null=True,
         verbose_name='用户'
     )
+    to_user = models.ForeignKey(
+        UserProfile,
+        related_name='to_user',
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+    )
     comment = models.TextField(verbose_name='用户评论')
     add_time = models.DateTimeField(
         verbose_name='添加时间',

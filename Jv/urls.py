@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
+from django.views.static import serve
+from .settings import MEDIA_ROOT
 from my_apps.user import user_url
 from my_apps.videos import videos_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include(user_url)),
-    path('', include(videos_urls))
+    path('', include(videos_urls)),
+    url(r'^media/(?P<path>.*)$',serve,{'document_root': MEDIA_ROOT})
 ]

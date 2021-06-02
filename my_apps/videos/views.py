@@ -1,11 +1,13 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.views.generic import View
 from my_apps.user.models import UserProfile
 from .models import Video, VideoSub, VideoComment, VideoStar, VideoHistory
-from .forms import VideoHistoryForm
+from .forms import VideoHistoryForm, CommentForm
 from django.http import JsonResponse
 from datetime import datetime
 from my_apps.user.forms import LoginForm, Reform
+from django.core.paginator import *   # 分页设置
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -55,10 +57,12 @@ class VideoDetailView(View):
         data['all_video_subs'] = VideoSub.objects.filter(video=video_id)
 
         # 这个视频的所有评论
-        data['all_comments'] = VideoComment.objects.filter(video=video_id)
+        all_comments = VideoComment.objects.filter(video=video, video_sub__number=video_sub_number)
+        data['all_comments'] = all_comments
 
         # 这个视频的所有演员
         data['all_stats'] = VideoStar.objects.filter(video=video_id)
+
         return render(request, 'video_detail.html',data)
 
     def history_save(self, user, video, sub):
@@ -69,3 +73,31 @@ class VideoDetailView(View):
         else:
             VideoHistory.objects.create(user=user,video=video, sub=sub)
 
+
+class AddComment(View):
+    """用户评论功能"""
+    def post(self,request):
+        if not request.user.is_authenticated:
+            return JsonResponse({
+                'status': 'fail',
+                'msg': '用户未登录'
+            })
+        video = Video.objects.get(id=request.POST.get('video'))
+        video_sub = VideoSub.objects.filter(video=video, number=request.POST.get('video_sub'))
+        comment = request.POST.get('comment')
+        VideoComment.objects.create(
+            user=request.user,
+            video=video,
+            video_sub=video_sub[0],
+            comment=comment
+        ).save()
+
+        data = {}
+        data['video'] = video
+        data['video_sub'] = video_sub
+        data['all_comments'] = VideoComment.objects.filter(video=video,video_sub=video_sub)
+        return JsonResponse({
+            'status': 'success',
+            'msg': '发表成功',
+            'data': data
+        })
