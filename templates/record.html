@@ -1,51 +1,52 @@
 {% extends 'index.html' %}
+{% load static %}
 
 {% block title %}
-    个人信息页
+    观看记录
 {% endblock %}
 
-{% block content %}
-    <h3>
-        这是个人信息页
-    </h3>
-    用户名:
-        {{ user.username }}
-{% endblock %}
-{% block index %}
-	<div id="container">
+
+{% block index%}
+    <div id="container">
         <div id="canvas">
             <div id="nav">
                 <h2 id="title"><i class="fa fa-sitemap"></i> Amzons</h2>
                     <ul id="toggle">
                     <li>
                         <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="">修改密码</a>
+                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'index' %}">返回个人主页</a>
                         </div>
                     </li>
 
                     <li>
                         <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="">修改绑定邮箱</a>
+                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'follow' %}">订阅列表</a>
                         </div>
                     </li>
-
-                    <li>
-                        <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="">修改账户信息</a>
-                        </div>
-                    </li>
-
                         <li>
                         <div class="active border">
-                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'index' %}">返回个人主页</a>
+                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'home' %}">返回首页</a>
+                        </div>
+                    </li>
+                        <li>
+                        <div class="active border">
+                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'user' %}">个人中心</a>
                         </div>
                     </li>
                 </ul>
              </div>
             <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
             <div class="htmleaf-container">
+                {% block header %}
+				<header class="htmleaf-header">
+					<h1>这里是观看记录</h1>
+				</header>
 
+				<h3>这是观看记录</h3>
+                    用户名:
+                    {{ user.username }}
+                {% endblock %}
 			</div>
          </div>
      </div>
-    {% endblock %}
+{% endblock %}

@@ -149,6 +149,19 @@ class IndexView(View):
     def get(self,request):
         return render(request, 'index.html'
         )
+class RecordView(View):
+    """记录界面"""
+
+    def get(self, request):
+        return render(request, 'record.html'
+                      )
+
+class FollowView(View):
+    """关注界面"""
+
+    def get(self, request):
+        return render(request, 'follow.html'
+                      )
 
 
 
