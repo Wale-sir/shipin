@@ -1,0 +1,65 @@
+{% load static %}
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>个人主页</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset2.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/default2.css">
+	<!-- Styles -->
+    <link href="/static/css/sty1.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,500,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href="http://cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+
+	<div id="container">
+        <div id="canvas">
+            <div id="nav">
+                <h2 id="title"><i class="fa fa-sitemap"></i> Amzons</h2>
+                    <ul id="toggle">
+                    <li>
+                        <div class="active border">
+                            <span class="menu-icons fa fa-home"></span>   <a href="{% url 'user' %}">个人</a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="active border">
+                            <span class="menu-icons fa fa-home"></span>   <a href="#">观看记录</a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="active border">
+                            <span class="menu-icons fa fa-home"></span>   <a href="#">关注列表</a>
+                        </div>
+                    </li>
+                </ul>
+             </div>
+            <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
+            <div class="htmleaf-container">
+				<header class="htmleaf-header">
+					<h1>这里是个人主页 <span>点击返回主页</span></h1>
+					<div class="htmleaf-links">
+						<a class="htmleaf-icon icon-htmleaf-home-outline" href="{% url 'home' %}" title="主页" target="_blank"><span> 主页</span></a>
+					</div>
+				</header>
+				<h3>阿巴阿巴阿巴阿巴阿巴</h3>
+
+			</div>
+         </div>
+     </div>
+            <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
+
+            
+	
+	<!-- Scripts -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/custom.js"></script>
+</body>
+</html>

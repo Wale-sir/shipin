@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block content %}
+
     <style>
         body,p,h1,ul,ol,li,input{
                         margin: 0;
@@ -36,13 +37,15 @@
         </script>
     {% endif %}
 
-    <a href="{% url 'home' %}"></a>
-        <h2>这是所有的视频</h2>
-    {% for video in video_list %}
+
+
+        {% for video in video_list %}
         <div>
             <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ video.image }}"></a>
             <br>
             <a href="{% url 'video_detail' video.id %}?video_sub_number=1">{{ video.name }}</a>
         </div>
     {% endfor %}
+
+
 {% endblock %}
