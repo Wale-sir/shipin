@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile
+from .models import UserProfile, UserFavorite
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import check_password
 import re
@@ -113,4 +113,8 @@ class LoginForm(forms.Form):
         return self.cleaned_data
 
 
+class AddFavForm(forms.ModelForm):
 
+    class Meta:
+        model = UserFavorite
+        fields = ['fav_id','fav_type']

@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, reverse, HttpResponseRedirect
 from django.http import JsonResponse
 from django.views.generic import View
 from .models import UserProfile, EmailPro, UserFavorite, UserMessage
-from .forms import Reform, LoginForm, SendEmailForm
+from .forms import Reform, LoginForm, SendEmailForm, AddFavForm
 from django.contrib.auth import login, logout, authenticate
-from my_apps.videos.models import Video, VideoHistory
+from my_apps.videos.models import Video, VideoHistory, VideoStar
 from utils.send_email import send_register_email, random_str
 from bs4 import BeautifulSoup
 # Create your views here.
@@ -85,6 +85,8 @@ class LoginView(View):
     """登录功能"""
 
     def get(self,request):
+        if request.user.is_authenticated:
+            return redirect(reverse('home'))
         form = LoginForm()
         return render(request, 'login.html', {
             'login_form': form
@@ -175,6 +177,69 @@ class ActiveUserView(View):
             return render(request, 'code.html', {
                 'status': False,
                 'msg': '验证失败!'
+            })
+
+
+class FavView(View):
+    """收藏功能"""
+
+    def post(self,request):
+        form = AddFavForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            fav_id = form.cleaned_data['fav_id']
+            fav_type = form.cleaned_data['fav_type']
+            # 查看是否被收藏
+            us = UserFavorite.objects.filter(
+                user=user,
+                fav_id=fav_id,
+                fav_type=fav_type
+            )
+            if us:
+                us.delete()
+                if fav_type == '1':
+                    video = Video.objects.get(id=fav_id)
+                    video.hav_num -= 1
+                    if video.hav_num < 0:
+                        video.hav_num = 0
+                    video.save()
+                elif fav_type == '2':
+                    user = VideoStar.objects.get(id=fav_id).user
+                    user.fans -= 1
+                    if user.hav_num < 0:
+                        user.hav_num = 0
+                    user.save()
+                return JsonResponse({
+                    'status': 'success',
+                    'msg': '追番'
+                })
+
+            else:
+                UserFavorite.objects.create(
+                        user=user,
+                        fav_id=fav_id,
+                        fav_type=fav_type
+                    ).save()
+                if fav_type == '1':
+                    video = Video.objects.get(id=fav_id)
+                    video.hav_num += 1
+                    if video.hav_num < 0:
+                        video.hav_num = 0
+                    video.save()
+                elif fav_type == '2':
+                    user = VideoStar.objects.get(id=fav_id).user
+                    user.fans += 1
+                    if user.hav_num < 0:
+                        user.hav_num = 0
+                    user.save()
+                return JsonResponse({
+                    'status': 'success',
+                    'msg': '取消追番'
+                })
+        else:
+            return JsonResponse({
+                'status': 'fail',
+                'msg': '参数错误'
             })
 
 

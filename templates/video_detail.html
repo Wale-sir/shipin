@@ -11,8 +11,17 @@
     <span>{{ video.name }}&nbsp; 第{{ video_sub.number }}集</span>
 {% endblock %}
 {% block content %}
+    <!-- 收藏视频  -->
+    <div class="hav" id="jsLeftBtn">
+        {% if fav_video %}
+            取消追番
+        {% else %}
+            追番
+        {% endif %}
+    </div>
+    <!-- 视频播放 -->
     <div class="video">
-        <video src="{{ video_sub.url }}" controls="controls" style="width: 1200px"></video>
+        <video src="{{ video_sub.url }}" controls="controls" style="width: 1000px"></video>
     {% for video_sub in all_video_subs %}
         <a  href='{% url 'video_detail' video.id %}?video_sub_number={{ video_sub.number }}'  id="video_sub_bu{{ video_sub.number }}" >
             <button>第{{ video_sub.number }}集</button>
@@ -98,6 +107,36 @@
         })
     });
 
+
+function add_fav(current_elem,fav_id,fav_type){
+        $.ajax({
+            cache:false,
+            type:"POST",
+            url:'{% url 'add_fav' %}',
+            data:{'fav_id':fav_id,'fav_type':fav_type},
+            async:true,
+            beforeSend:function (xhr,setting) {
+                xhr.setRequestHeader("X-CSRFToken","{{ csrf_token }}");
+            },
+            success:function (data) {
+                if(data.status == 'fail'){
+                    if(data.msg == '用户未登录'){
+                        window.location.href = "{% url 'login' %}"
+                    }else{
+                        alert(data.msg)
+                    }
+                }else if (data.status == 'success'){
+                    current_elem.text(data.msg)
+                }
+            }
+        })
+    }
+    {# 收藏视频 #}
+    $(document).ready(function () {
+        $('#jsLeftBtn').on('click',function () {
+            add_fav($(this),{{ video.id }},1);
+        });
+    });
 
 </script>
 {% endblock %}

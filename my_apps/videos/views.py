@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.views.generic import View
-from my_apps.user.models import UserProfile
+from my_apps.user.models import UserProfile, UserFavorite
 from .models import Video, VideoSub, VideoComment, VideoStar, VideoHistory
 from .forms import VideoHistoryForm, CommentForm
 from django.http import JsonResponse
 from datetime import datetime
+from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from my_apps.user.forms import LoginForm, Reform
-from django.core.paginator import *   # 分页设置
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
@@ -14,7 +14,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 class HomeView(View):
     """主页 显示所有视频"""
-    def get(self, request,):
+    def get(self, request):
         data = {}
         if request.user.is_authenticated:
             user = UserProfile.objects.get(
@@ -23,8 +23,16 @@ class HomeView(View):
             data['username'] = user.username
         data['user_is_au'] = request.user.is_authenticated
         data['login_form'] = LoginForm()
-        video_list = Video.objects.all()
-        data['video_list'] = video_list
+        video_list = Video.objects.all().order_by('-start_time')
+
+        # 分页
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+        p = Paginator(video_list, per_page=20, request=request)
+        all_video = p.page(page)
+        data['all_video'] = all_video
 
         return render(request, 'home.html', data)
 
@@ -49,9 +57,14 @@ class VideoDetailView(View):
         # 获取这个视频的某一集
         data['video_sub'] = VideoSub.objects.get(video=video, number=video_sub_number)
 
+        # 收藏状态
+        fav_video = False
         # 存储观看记录
         if data['user_is_au']:
             self.history_save(request.user,video=video,sub=video_sub_number)
+            if UserFavorite.objects.filter(user=request.user,fav_id=video.id,fav_type='1'):
+                fav_video = True
+        data['fav_video'] = fav_video
 
         # 获取这个视频的所有集数
         data['all_video_subs'] = VideoSub.objects.filter(video=video_id)
@@ -94,5 +107,35 @@ class AddComment(View):
 
         return JsonResponse({
             'status': 'success',
-            'msg': ''
+            'msg': 'ok'
         })
+
+
+class SearchView(View):
+
+    def get(self,request):
+        keyword = request.GET.get('keyword','')
+        if keyword == '':
+            return redirect(reverse('home'))
+
+        data = {}
+        if request.user.is_authenticated:
+            user = UserProfile.objects.get(
+                username=request.user
+            )
+            data['username'] = user.username
+        data['user_is_au'] = request.user.is_authenticated
+        data['login_form'] = LoginForm()
+        video_list = Video.objects.filter(name__icontains=keyword).order_by('-start_time')
+
+        # 分页
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+        p = Paginator(video_list, per_page=20, request=request)
+        all_video = p.page(page)
+
+        data['all_video'] = all_video
+
+        return render(request, 'home.html', data)

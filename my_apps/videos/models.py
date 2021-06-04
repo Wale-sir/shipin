@@ -77,6 +77,14 @@ class Video(BaseModel):
 
 class VideoStar(BaseModel):
     """声优"""
+    user = models.ForeignKey(
+        UserProfile,
+        on_delete=models.CASCADE,
+        related_name='video_star_user',
+        verbose_name='用户',
+        blank=True,
+        null=True,
+    )
     video = models.ForeignKey(
         Video,
         related_name='video_star',

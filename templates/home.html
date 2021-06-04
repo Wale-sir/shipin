@@ -30,6 +30,52 @@
 
         }
 
+        .a{
+            position: absolute;
+            top: 50px;
+            left: 1200px;
+            transform: translate(-50%,-50%);
+            background-color: #2f3640;
+            height: 40px;
+            border-radius: 40px;
+            padding: 10px;
+
+        }
+        .a:hover .b{
+            width: 200px;
+            padding: 0 6px;
+        }
+        .a:hover .c{
+            background-color: wheat;
+        }
+        .b{
+            border: none;
+            background: none;
+            /* 取消选中搜索框时的外边框 */
+            outline: none;
+            width: 0;
+            padding: 0;
+            transition: .4s;
+            line-height: 40px;
+            font-size: 20px;
+            color: wheat;
+        }
+        .c{
+            color: #e94118;
+            float: right;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #2f3640;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: .4s;
+
+        }
+
+
+
     </style>
     {% if msg == 're_em_msg' %}
         <script>
@@ -37,9 +83,18 @@
         </script>
     {% endif %}
 
-
-
-        {% for video in video_list %}
+    <div class="a">
+        <form action="{% url 'search_view' %}" method="GET">
+            <input type="text" class="b" name="keyword">
+                <button class="c" type="submit">
+                    <img src="/static/搜索框.png" style="width: 30px;">
+                </button>
+        </form>
+    </div>
+        {% if not all_video.object_list %}
+            <h1>没有找到您需要的内容</h1>
+        {% endif %}
+        {% for video in all_video.object_list %}
         <div>
             <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ video.image }}"></a>
             <br>
@@ -47,5 +102,38 @@
         </div>
     {% endfor %}
 
+            <ul class="pagelist">
+                    {% if all_video.has_previous %}
+                        <li class="long">
+                            <a href="?{{ all_video.previous_page_number.querystring }}"
+                               class="prev">
+                                上一页
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for page in all_video.pages %}
+                        {% if page %}
+                            {% ifequal page all_video.number %}
+                                <li class="active">
+                                    <a href="?{{ page.querystring }}">{{ page }}</a>
+                                </li>
+                            {% else %}
+                                <li>
+                                     <a href="?{{ page.querystring }}" class="page">{{ page }}</a>
+                                </li>
+                            {% endifequal %}
+                        {% else %}
+                        <li class="none">...</li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if all_video.has_next %}
+                        <li class="long">
+                            <a href="?{{ all_video.next_page_number.querystring }}">下一页</a>
+                        </li>
+                    {% endif %}
+                 </ul>
+{% endblock %}
+
+{% block custom_jss %}
 
 {% endblock %}

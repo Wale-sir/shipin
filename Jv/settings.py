@@ -152,3 +152,11 @@ EMAIL_SUBJECT_PREFIX = '[django]'     # 为邮件Subject-line前缀,默认是'[d
 EMAIL_USE_TLS = False   # 与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
 
 EMAIL_FROM = 'q1550363865@163.com'  # 与 EMAIL_HOST_USER 相同
+
+
+# 分页配置
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 5,
+    'MARGIN_PAGES_DISPLAYED': 2,
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}

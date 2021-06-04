@@ -54,6 +54,8 @@ class UserProfile(AbstractUser):
         upload_to='head_image/%Y/%m',
         default='default1.jpg'
     )
+    fans = models.IntegerField(default=0,
+                                  verbose_name='收藏数')
 
     class Meta:
         verbose_name = "用户信息"
