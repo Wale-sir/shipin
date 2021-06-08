@@ -4,6 +4,14 @@
     个人信息页
 {% endblock %}
 
+
+{% if user_error %}
+    <script>
+        alert('{{ user_error }}');
+        window.location.href = "{% url 'user'%}"
+    </script>
+{% endif %}
+
 {% block content %}
     <h3>
         这是个人信息页
@@ -23,7 +31,7 @@
     <br>
     手机:<label>{{ user.mobile }}</label>
     <br>
-    生日:<label>{{ user.birthday }}</label>
+    生日:<label>{{ user.birthday.date }}</label>
     <br>
     用户名:<label>{{ user.username }}</label>
     <br>
@@ -46,15 +54,16 @@
     {% else %}
         {% for video in all_videos %}
             <br>
-            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ video.image }}" style="height: 80px;width: 60px;"/></a><br>
+            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ MEDIA_URL }}{{ video.image }}" style="height: 80px;width: 60px;"/></a><br>
                 <label>{{ video.name }}</label>
+
         {% endfor %}
                     <a href="{% url 'user_fav' %}">查看更多</a>
     {% endif %}
 
 
         {% for star in all_stars %}
-            <a href=""> <img src="{{ star.user.image }}"></a>
+            <a href=""> <img src="{{ MEDIA_URL }}{{ star.user.image }}"></a>
             <label>{{ star.name }}</label>
 
         {% endfor %}
@@ -65,7 +74,7 @@
         <h3>历史观看</h3>
         {% for history in all_video_history %}
             <a href="{% url 'video_detail' history.video.id %}?video_sub_number={{ history.sub }}">
-                <img src="{{ history.video.image }}" style="height: 80px;width: 60px;">
+                <img src="{{ MEDIA_URL }}{{ history.video.image }}" style="height: 80px;width: 60px;">
             <label>{{ history.video.name }}第{{ history.sub }}集</label>
             </a>
         {% endfor %}
@@ -75,7 +84,7 @@
 <!-- 修改密码 -->
     <div class="layui-row" id="changepassword" style="display:none;">
       <div class="layui-col-md11">
-     <form class="addvoteform layui-form" id="change_password_form">
+     <form class="addvoteform layui-form" id="change_password_form" method="POST" action="{% url 'change_password' %}">
          {% csrf_token %}
   <div class="layui-form-item">
     <label class="layui-form-label">旧密码</label>

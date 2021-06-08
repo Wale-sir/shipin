@@ -14,20 +14,32 @@
     <!-- 收藏视频  -->
     <div class="hav" id="jsLeftBtn">
         {% if fav_video %}
-            取消追番
+            取消收藏
         {% else %}
-            追番
+            收藏
         {% endif %}
     </div>
     <!-- 视频播放 -->
-    <div class="video">
-        <video src="{{ video_sub.url }}" controls="controls" style="width: 1000px"></video>
+    {% if video_sub.url %}
+         <div class="video">
+        <video src="{{ video_sub.url }}" controls="controls" style="width: 1000px" type="video/mp4"></video>
     {% for video_sub in all_video_subs %}
         <a  href='{% url 'video_detail' video.id %}?video_sub_number={{ video_sub.number }}'  id="video_sub_bu{{ video_sub.number }}" >
             <button>第{{ video_sub.number }}集</button>
         </a>
     {% endfor %}
     </div>
+        {% else %}
+            <div class="video">
+        <video src="{{ video_sub.user_field.url }}" controls="controls" style="width: 1000px" type="video/mp4"></video>
+    {% for video_sub in all_video_subs %}
+        <a  href='{% url 'video_detail' video.id %}?video_sub_number={{ video_sub.number }}'  id="video_sub_bu{{ video_sub.number }}" >
+            <button>第{{ video_sub.number }}集</button>
+        </a>
+    {% endfor %}
+    </div>
+
+    {% endif %}
 
 {#    评论 #}
         <div id="js-pub-container" class="issques clearfix js-form">
@@ -44,7 +56,7 @@
         {% for comment in all_comments %}
     <div class="comment-list">
         <div class="avatar">
-            <img src="/static/{{ comment.user.image }}" style="width: 30px; height: 30px">
+            <img src="{{ MEDIA_URL }}{{ comment.user.image }}" style="width: 30px; height: 30px">
         </div>
         <div class="content">
             <div class="metadata">

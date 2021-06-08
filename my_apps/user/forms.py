@@ -1,5 +1,6 @@
 from django import forms
 from .models import UserProfile, UserFavorite
+from my_apps.videos.models import VideoSub, Video
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import check_password
 import re
@@ -132,5 +133,40 @@ class ChangeInfoForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['nick_name', 'birthday', 'gender', 'address']
+
+
+class ChangePasswordForm(forms.Form):
+    """更换密码"""
+    old_password = forms.CharField(required=True, widget=forms.PasswordInput)
+    new_password = forms.CharField(required=True, widget=forms.PasswordInput)
+    new_check_password = forms.CharField(required=True, widget=forms.PasswordInput)
+
+    def clean(self):
+        old_password = self.cleaned_data['old_password']
+        new_password = self.cleaned_data['new_password']
+        new_check_password = self.cleaned_data['new_check_password']
+
+        if new_password == old_password:
+            raise forms.ValidationError('新密码不能与旧密码一致')
+
+        elif new_password != new_check_password:
+            raise forms.ValidationError('两次密码不一致')
+
+        elif len(new_password) < 6:
+            raise forms.ValidationError('新密码过短')
+
+        return self.cleaned_data
+
+
+class VideoUploadForm(forms.ModelForm):
+    class Meta:
+        model = VideoSub
+        fields = ['user_field']
+
+
+class VideoForm(forms.ModelForm):
+    class Meta:
+        model = Video
+        fields = ['name','image','info']
 
 

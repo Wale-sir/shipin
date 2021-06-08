@@ -5,12 +5,12 @@ from django.contrib.auth.models import AbstractUser
 
 
 GENDER_CHOICE = (
-    ('male','男'),
-    ('female','女')
+    ('male', '男'),
+    ('female', '女')
 )
 FAV_TYPE = (
-    ('1','视频'),
-    ('2','演员'),
+    ('1', '视频'),
+    ('2', '演员'),
 )
 
 
@@ -55,7 +55,7 @@ class UserProfile(AbstractUser):
         default='default.jpg'
     )
     fans = models.IntegerField(default=0,
-                                verbose_name='收藏数')
+                               verbose_name='收藏数')
 
     class Meta:
         verbose_name = "用户信息"
@@ -91,7 +91,7 @@ class UserFavorite(BaseModel):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return '{username}_{fav_id}'.format(username=self.user.username,fav_id=self.fav_id)
+        return '{username}_{fav_id}'.format(username=self.user.username, fav_id=self.fav_id)
 
 
 class UserMessage(BaseModel):

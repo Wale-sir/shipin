@@ -8,7 +8,6 @@ from my_apps.user.models import BaseModel, UserProfile
 视频
 """
 
-
 """视频类别"""
 
 video_type = (
@@ -52,15 +51,14 @@ class Video(BaseModel):
     name = models.CharField(max_length=100,
                             verbose_name='视频名',
                             null=False)
-    image = models.CharField(max_length=500, default='',
-                             verbose_name='封面')
+    image = models.ImageField(upload_to='video_image/%Y/%m',
+                              verbose_name='封面')
     video_type = models.CharField(max_length=100,
                                   choices=video_type,
-                                  verbose_name='视频类别')
-
+                                  verbose_name='视频类别',blank=True,null=True)
     nationality_type = models.CharField(max_length=100,
                                         choices=nation_type,
-                                        verbose_name='国家')
+                                        verbose_name='国家',blank=True,null=True)
     info = models.TextField(verbose_name='简介')
     mood = models.IntegerField(default=0,
                                verbose_name='人气')
@@ -116,10 +114,15 @@ class VideoSub(BaseModel):
         null=True,
         verbose_name='视频'
     )
-    # 普通视频
-    url = models.CharField(max_length=500, null=True, blank=True, verbose_name='地址')
+    url = models.CharField(max_length=2000, null=True, blank=True, verbose_name='地址')
     number = models.IntegerField(default=1, verbose_name='集数')
     likes = models.IntegerField(default=0, verbose_name='点赞数')
+
+    # 增加1个字段用户上传时 使用
+    user_field = models.FileField(blank=True,
+                                  null=True,
+                                  upload_to='video/%Y/%m',
+                                  verbose_name='视频文件(用户上传使用)')
 
     def __str__(self):
         return '{}'.format(self.number)
@@ -201,6 +204,3 @@ class VideoHistory(BaseModel):
     class Meta:
         verbose_name = '历史记录'
         verbose_name_plural = verbose_name
-
-
-

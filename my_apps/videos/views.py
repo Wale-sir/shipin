@@ -18,7 +18,7 @@ class HomeView(View):
         data = {}
         if request.user.is_authenticated:
             user = UserProfile.objects.get(
-                username=request.user
+                username=request.user.username
             )
             data['username'] = user.username
         data['user_is_au'] = request.user.is_authenticated
@@ -33,7 +33,6 @@ class HomeView(View):
         p = Paginator(video_list, per_page=20, request=request)
         all_video = p.page(page)
         data['all_video'] = all_video
-
         return render(request, 'home.html', data)
 
 
@@ -44,7 +43,7 @@ class VideoDetailView(View):
 
         # 判定是否登陆
         data['user_is_au'] = request.user.is_authenticated
-        data['user'] = request.user.id
+        data['user'] = request.user
         # 获取视频
         video = Video.objects.get(id=video_id)
         data['video'] = video
@@ -121,7 +120,7 @@ class SearchView(View):
         data = {}
         if request.user.is_authenticated:
             user = UserProfile.objects.get(
-                username=request.user
+                username=request.user.username
             )
             data['username'] = user.username
         data['user_is_au'] = request.user.is_authenticated

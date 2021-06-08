@@ -2,12 +2,16 @@ from django.shortcuts import render, redirect, reverse, HttpResponseRedirect, Ht
 from django.http import JsonResponse
 from django.views.generic import View
 from .models import UserProfile, EmailPro, UserFavorite, UserMessage
-from .forms import Reform, LoginForm, SendEmailForm, AddFavForm, ChangePicForm, ChangeInfoForm
+from .forms import Reform, LoginForm, SendEmailForm, AddFavForm, ChangePicForm, ChangeInfoForm,\
+    ChangePasswordForm, VideoUploadForm, VideoForm
 from django.contrib.auth import login, logout, authenticate
 from my_apps.videos.models import Video, VideoHistory, VideoStar
 from utils.send_email import send_register_email, random_str
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.csrf import csrf_exempt
+from bs4 import BeautifulSoup
+from django.contrib.auth.hashers import check_password,make_password
+from datetime import datetime
 # Create your views here.
 
 
@@ -15,7 +19,7 @@ class UserView(View):
     """用户界面"""
     def get(self, request):
         if not request.user.is_authenticated:
-            return redirect(reverse('login'))
+            return redirect(reverse('home'))
         user = request.user.is_authenticated
 
         all_videos = []
@@ -101,17 +105,63 @@ class UserFavView(View):
 
 
 class ChangePassword(View):
+    """更改密码"""
     def post(self, request):
         form = ChangePasswordForm(request.POST)
+        data = {}
+        if form.is_valid():
+            old_password = form.cleaned_data['old_password']
+            new_password = form.cleaned_data['new_password']
+            new_check_password = form.cleaned_data['new_check_password']
+            user = UserProfile.objects.get(id=request.user.id)
+            if not check_password(old_password, user.password):
+                data['user_error'] = '旧密码与原密码不一致'
+                return render(request,'user.html',data)
+            #  更改密码
+            user.password = make_password(new_password)
+            user.save()
+            logout(request)
+            return redirect(reverse('home'))
+        return render(request, 'user.html', {'user_error': BeautifulSoup(str(form.non_field_errors()), 'lxml').text})
 
-        return JsonResponse({
-            'status': 'fail',
-            'msg': form.non_field_errors()
-        })
+
+class UserVideoView(View):
+    """用户发布视频页"""
+    def get(self, request):
+        if not request.user.is_authenticated:
+            return redirect(reverse('home'))
+        data = {}
+        data['user_is_au'] = request.user.is_authenticated
+        data['user_video'] = Video.objects.filter(user=request.user)
+        return render(request, 'user_video.html', data)
+
+    def post(self,request):
+        video_form = VideoForm(request.POST, request.FILES, instance=request.user)
+        sub_form = VideoUploadForm(request.POST, request.FILES, instance=request.user)
+
+        if video_form.is_valid() and sub_form.is_valid():
+            name = video_form.cleaned_data['name']
+            image = video_form.cleaned_data['image']
+            info = video_form.cleaned_data['info']
+
+            field = sub_form.cleaned_data['user_field']
+
+            # 先保存视频, 再用sub 保存文件
+            video = Video.objects.create(user=request.user, name=name, image=image, info=info, start_time=datetime.now())
+            video.video_sub.create(
+                video=video,
+                user_field=field
+            )
+            video.save()
+            return redirect(reverse('user_video'))
+        return render(request,'user_video.html', {'video_error': '发布失败'})
 
 
 class UserHistory(View):
+    """用户历史界面"""
     def get(self,request):
+        if not request.user.is_authenticated:
+            return redirect(reverse('home'))
         data = {}
         data['user_is_au'] = request.user.is_authenticated
 
@@ -140,6 +190,7 @@ class ChangePic(View):
 
 
 class ChangeInfo(View):
+    """修改个人信息"""
     def post(self,request):
         form = ChangeInfoForm(request.POST)
         if form.is_valid():
@@ -158,28 +209,15 @@ class ChangeInfo(View):
             return redirect(reverse('user'))
 
 
-
-
 class ReView(View):
     """注册界面"""
 
-    def get(self,request):
-        re_form = Reform()
-        means = request.GET.get('means')
-        if means == 'email':
-            re_form = SendEmailForm()
-        return render(request, 'register.html', {
-            're_form': re_form,
-            'means': means
-        })
-
     def post(self, request):
         re_form = Reform(request.POST)
-
+        data={}
         if not re_form.is_valid():
-            return render(request,'register.html',{
-                're_form': re_form,
-                'error': re_form.non_field_errors})
+            data['error'] = BeautifulSoup(str(re_form.non_field_errors()), 'lxml').text
+            return render(request, 'home.html', data)
 
         # 验证通过 传入数据库
         user = UserProfile.objects.create_user(
@@ -194,23 +232,33 @@ class ReView(View):
 class LoginView(View):
     """登录功能"""
 
-    def get(self,request):
-        if request.user.is_authenticated:
-            return redirect(reverse('home'))
-        form = LoginForm()
-        return render(request, 'login.html', {
-            'login_form': form
-        })
-
     def post(self, request):
         form = LoginForm(request.POST)
-        if not form.is_valid():
-            return render(request,'login.html',{
-                'login_form': form,
-                'error': form.non_field_errors
-            })
 
+        data = {}
+        if not form.is_valid():
+            data['error'] = BeautifulSoup(str(form.non_field_errors()),'lxml').text
+            return render(request,'home.html', data)
         login(request, form.cleaned_data.get('user'))
+
+        if request.user.is_authenticated:
+            user = UserProfile.objects.get(
+                username=request.user.username
+            )
+            data['username'] = user.username
+        data['user_is_au'] = request.user.is_authenticated
+        data['login_form'] = LoginForm()
+        video_list = Video.objects.all().order_by('-start_time')
+
+        # 分页
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+        p = Paginator(video_list, per_page=20, request=request)
+        all_video = p.page(page)
+        data['all_video'] = all_video
+
         return redirect(reverse('home'))
 
 
@@ -226,12 +274,11 @@ class SendEmailView(View):
 
     def post(self, request):
         form = SendEmailForm(request.POST)
+
+        data={}
         if not form.is_valid():
-            return render(request,'register.html',{
-                're_form': form,
-                'error_re_email': form.non_field_errors,
-                'means': 'email'
-            })
+            data['error'] = BeautifulSoup(str(form.non_field_errors()), 'lxml').text
+            return render(request, 'home.html', data)
 
         username = random_str()       # 随机生成用户名
         while UserProfile.objects.filter(username=username):
@@ -321,7 +368,7 @@ class FavView(View):
                     user.save()
                 return JsonResponse({
                     'status': 'success',
-                    'msg': '追番'
+                    'msg': '收藏'
                 })
 
             else:
@@ -344,7 +391,7 @@ class FavView(View):
                     user.save()
                 return JsonResponse({
                     'status': 'success',
-                    'msg': '取消追番'
+                    'msg': '取消收藏'
                 })
         else:
             return JsonResponse({

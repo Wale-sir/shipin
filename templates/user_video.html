@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    我的视频
+{% endblock %}
+
+{% if video_error %}
+    <script>
+        alert('{{ video_error }}');
+        window.location.href = "{% url 'user'%}"
+    </script>
+{% endif %}
+
+{% block content %}
+
+
+    <!-- 发布视频按钮 -->
+    <div class="layui-input-inline">
+         <button type="button" onclick="video()" class="layui-btn layui-btn-primary layui-btn-radius">点击发布视频</button>
+    </div>
+
+    <!-- 发布视频表单 -->
+ <div class="layui-row" id="video-box" style="display:none;">
+   <div class="layui-col-md11">
+     <form class="layui-form" method="POST" action="{% url 'user_video' %}" enctype="multipart/form-data">
+         {% csrf_token %}
+
+    <div class="layui-form-item">
+    <label class="layui-form-label">视频标题</label>
+    <div class="layui-input-block">
+      <input type="text" id="video_name" name="name" required  lay-verify="required" placeholder="标题" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label">视频封面</label>
+    <div class="layui-input-block">
+      <input type="file" id="video_image" name="image" required  lay-verify="required" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">视频文件</label>
+        <div class="layui-input-block">
+          <input type="file" id="video_field" name="user_field" required  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+         <div class="layui-form-item">
+        <label class="layui-form-label">视频简介</label>
+        <div class="layui-input-block">
+          <input type="text" id="video_info" name="info" required  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo" id='changeinfo'>立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+   </div>
+ </div>
+
+    <div class="my_video">
+    {% for video in user_video %}
+        <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ MEDIA_URL }}{{ video.image }}" style="width: 100px;height: 150px"></a>
+        <a href="{% url 'video_detail' video.id %}?video_sub_number=1">{{ video.name }}</a>
+    {% endfor %}
+    </div>
+
+
+{% endblock %}
+
+{% block custom_jss %}
+    <script>
+{#  视频发布窗口弹出  #}
+    function video(){
+        layui.use('form', function(){
+        var form = layui.form;
+        laydate = layui.laydate;
+        $ = layui.$;
+        layer.open({
+        //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        type:1,
+        title:"视频发布",
+        area: ['50%','50%'],
+        content:$("#video-box").html(),
+        success:function () {
+        form.render();
+        laydate.render({     //创建时间选择框
+                elem: '#borrowtimebox' //指定元素
+              });
+            }
+        });
+    });
+}
+
+layui.use('upload', function(){
+  var upload = layui.upload;
+
+  //执行实例
+  var uploadInst = upload.render({
+    elem: '#test3' //绑定元素
+    ,url: '/upload/' //上传接口
+    ,done: function(res){
+      //上传完毕回调
+    }
+    ,error: function(){
+      //请求异常回调
+    }
+  });
+});
+    </script>
+{% endblock %}
