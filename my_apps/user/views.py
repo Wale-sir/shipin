@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect, reverse, HttpResponseRedirect
+from django.shortcuts import render, redirect, reverse, HttpResponseRedirect, HttpResponse
 from django.http import JsonResponse
 from django.views.generic import View
 from .models import UserProfile, EmailPro, UserFavorite, UserMessage
-from .forms import Reform, LoginForm, SendEmailForm, AddFavForm
+from .forms import Reform, LoginForm, SendEmailForm, AddFavForm, ChangePicForm, ChangeInfoForm
 from django.contrib.auth import login, logout, authenticate
 from my_apps.videos.models import Video, VideoHistory, VideoStar
 from utils.send_email import send_register_email, random_str
-from bs4 import BeautifulSoup
+from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -16,15 +17,18 @@ class UserView(View):
         if not request.user.is_authenticated:
             return redirect(reverse('login'))
         user = request.user.is_authenticated
-        all_videos = []
-        # 用户收藏
 
-        # 所有收藏的视频
-        user_fav = UserFavorite.objects.filter(user=request.user,fav_type=1)
+        all_videos = []
+        all_star = []
+        # 搜藏
+        user_fav = UserFavorite.objects.filter(user=request.user)
         for fav in user_fav:
             if fav.fav_type == '1':
                 video = Video.objects.get(id=fav.fav_id)
                 all_videos.append(video)
+            elif fav.fav_type == '2':
+                star = VideoStar.objects.get(id=fav.fav_id)
+                all_star.append(star)
 
         # 进入个人主页时,删除一些历史记录
         self.del_history(request.user)
@@ -34,8 +38,10 @@ class UserView(View):
         return render(request, 'user.html', {
             'type': 'home',
             'user_is_au': user,
-            'all_videos': all_videos,
-            'all_video_history': all_video_history
+            'all_videos': all_videos[:3],
+            'all_star': all_star[:3],
+            'all_video_history': all_video_history[:3],
+            'pic_form': ChangePicForm()
         })
 
     def del_history(self, user):
@@ -48,6 +54,110 @@ class UserView(View):
             vs = VideoHistory.objects.filter(user=user).order_by('-modify_time')
             for i in vs[40:]:
                 i.delete()
+
+
+class UserFavView(View):
+    """用户收藏界面"""
+
+    def get(self,request):
+        if not request.user.is_authenticated:
+            return redirect(reverse('home'))
+        data = {}
+
+        data['user_is_au'] = request.user.is_authenticated
+
+        all_videos = []
+        all_star = []
+        # 视频搜藏查询
+        user_fav = UserFavorite.objects.filter(user=request.user)
+        for fav in user_fav:
+            if fav.fav_type == '1':
+                video = Video.objects.get(id=fav.fav_id)
+                all_videos.append(video)
+            elif fav.fav_type == '2':
+                star = VideoStar.objects.get(id=fav.fav_id)
+                all_star.append(star)
+
+        # 视频分页
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+        p = Paginator(all_videos, per_page=20, request=request)
+        all_video = p.page(page)
+
+        data['all_video'] = all_video
+
+        # 所有明星分页
+        try:
+            page = request.GET.get('star_page', 1)
+        except PageNotAnInteger:
+            page = 1
+        p = Paginator(all_star, per_page=20, request=request)
+        all_star = p.page(page)
+
+        data['all_star'] = all_star
+        return render(request,'user_fav.html',data)
+
+
+class ChangePassword(View):
+    def post(self, request):
+        form = ChangePasswordForm(request.POST)
+
+        return JsonResponse({
+            'status': 'fail',
+            'msg': form.non_field_errors()
+        })
+
+
+class UserHistory(View):
+    def get(self,request):
+        data = {}
+        data['user_is_au'] = request.user.is_authenticated
+
+        all_video_history = VideoHistory.objects.filter(user=request.user).order_by('-modify_time')
+        # 历史记录分页
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+        p = Paginator(all_video_history, per_page=20, request=request)
+        all_video_history = p.page(page)
+
+        data['all_video_history'] = all_video_history
+        return render(request,'user_history.html',data)
+
+
+class ChangePic(View):
+    """修改用户头像"""
+    def post(self,request):
+        image_form = ChangePicForm(request.POST, request.FILES, instance=request.user)
+        if image_form.is_valid():
+            image_form.save()
+            return redirect(reverse('user'))
+        else:
+            return redirect(reverse('user'))
+
+
+class ChangeInfo(View):
+    def post(self,request):
+        form = ChangeInfoForm(request.POST)
+        if form.is_valid():
+            nick_name = form.cleaned_data['nick_name']
+            birthday = form.cleaned_data['birthday']
+            gender = form.cleaned_data['gender']
+            address = form.cleaned_data['address']
+            user = request.user
+            user.nick_name = nick_name
+            user.birthday = birthday
+            user.gender = gender
+            user.address = address
+            user.save()
+            return redirect(reverse('user'))
+        else:
+            return redirect(reverse('user'))
+
+
 
 
 class ReView(View):

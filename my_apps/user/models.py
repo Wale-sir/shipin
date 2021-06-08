@@ -51,11 +51,11 @@ class UserProfile(AbstractUser):
     )
     image = models.ImageField(
         verbose_name='头像',
-        upload_to='head_image/%Y/%m',
-        default='default1.jpg'
+        upload_to=r'head_image/%Y/%m',
+        default='default.jpg'
     )
     fans = models.IntegerField(default=0,
-                                  verbose_name='收藏数')
+                                verbose_name='收藏数')
 
     class Meta:
         verbose_name = "用户信息"

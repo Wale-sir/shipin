@@ -138,4 +138,4 @@ class SearchView(View):
 
         data['all_video'] = all_video
 
-        return render(request, 'home.html', data)
+        return render(request, 'search.html', data)

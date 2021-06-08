@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    收藏
+{% endblock %}
+
+{% block custom_bread %}
+    <a href="{% url 'user' %}">个人信息</a>>
+    <span>收藏</span>
+{% endblock %}
+
+{% block content %}
+<div class="my_fav">
+        <h1>关注的视频</h1>
+<div class="my_video">
+{% if not all_video.object_list %}
+    您还没有关注视频哦!
+    {% else %}
+        {% for video in all_video.object_list %}
+        <div>
+            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ video.image }}" style="height: 80px;width: 60px;"></a>
+            <br>
+            <a href="{% url 'video_detail' video.id %}?video_sub_number=1">{{ video.name }}</a>
+        </div>
+    {% endfor %}
+            <ul class="pagelist">
+                    {% if all_video.has_previous %}
+                        <li class="long">
+                            <a href="?{{ all_video.previous_page_number.querystring }}"
+                               class="prev">
+                                上一页
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for page in all_video.pages %}
+                        {% if page %}
+                            {% ifequal page all_video.number %}
+                                <li class="active">
+                                    <a href="?{{ page.querystring }}">{{ page }}</a>
+                                </li>
+                            {% else %}
+                                <li>
+                                     <a href="?{{ page.querystring }}" class="page">{{ page }}</a>
+                                </li>
+                            {% endifequal %}
+                        {% else %}
+                        <li class="none">...</li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if all_video.has_next %}
+                        <li class="long">
+                            <a href="?{{ all_video.next_page_number.querystring }}">下一页</a>
+                        </li>
+                    {% endif %}
+                 </ul>
+{% endif %}
+
+</div>
+
+<div class="my_star">
+<h1>关注的用户</h1>
+        {% if not all_star.object_list %}
+            您还没有关注用户哦!
+            {% else %}
+            {% for star in all_star.object_list %}
+                <div>
+                    <a href=""><img src="{{ star.user.image }}" style="height: 80px;width: 60px;"></a>
+                    <br>
+                    <a href="">{{ star.name }}</a>
+                </div>
+            {% endfor %}
+                    <ul class="pagelist">
+                            {% if all_star.has_previous %}
+                                <li class="long">
+                                    <a href="?star_{{ all_star.previous_page_number.querystring }}"
+                                       class="prev">
+                                        上一页
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% for page in all_star.pages %}
+                                {% if page %}
+                                    {% ifequal page all_star.number %}
+                                        <li class="active">
+                                            <a href="?star_{{ page.querystring }}">{{ page }}</a>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                             <a href="?star_{{ page.querystring }}" class="page">{{ page }}</a>
+                                        </li>
+                                    {% endifequal %}
+                                {% else %}
+                                <li class="none">...</li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if all_star.has_next %}
+                                <li class="long">
+                                    <a href="?star_{{ all_star.next_page_number.querystring }}">下一页</a>
+                                </li>
+                            {% endif %}
+                         </ul>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

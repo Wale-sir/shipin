@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>
-    {% if msg %}
+    {% if status %}
         <script>
             alert('验证成功!');
             location.href='{% url 'home' %}'
@@ -17,7 +17,6 @@
             location.href='{% url 'home' %}'
         </script>
     {% endif %}
-    <a href="{% url 'home' %}">返回主页</a>
 
 </div>
 </body>

@@ -37,7 +37,10 @@ nation_type = (
 
 
 class Video(BaseModel):
-    """视频信息"""
+    """
+    视频信息
+    普通视频表(管理员用来上传)
+    """
     user = models.ForeignKey(
         UserProfile,
         on_delete=models.SET_NULL,
@@ -113,7 +116,8 @@ class VideoSub(BaseModel):
         null=True,
         verbose_name='视频'
     )
-    url = models.CharField(max_length=500, null=False, verbose_name='地址')
+    # 普通视频
+    url = models.CharField(max_length=500, null=True, blank=True, verbose_name='地址')
     number = models.IntegerField(default=1, verbose_name='集数')
     likes = models.IntegerField(default=0, verbose_name='点赞数')
 
@@ -173,7 +177,7 @@ class VideoComment(BaseModel):
 
 
 class VideoHistory(BaseModel):
-    """存放最后一次观看视频的集数"""
+    """视频播放历史"""
     video = models.ForeignKey(
         Video,
         on_delete=models.CASCADE,

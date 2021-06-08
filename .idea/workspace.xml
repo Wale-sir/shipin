@@ -2,7 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9fcd5f3-321e-4f3a-815d-28131911a1fa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/搜索框.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/layui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/code.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/laydate/default/laydate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/icon-ext.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/loading-0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/loading-1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/css/modules/layer/default/loading-2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/font/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/font/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/font/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/font/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/font/iconfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/layui/layui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/search.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user_fav.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user_history.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jv/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Jv/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_apps/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/forms.py" afterDir="false" />
@@ -10,11 +27,12 @@
       <change beforePath="$PROJECT_DIR$/my_apps/user/user_url.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/user_url.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/user/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_apps/videos/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/videos/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_apps/videos/videos_urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/videos/videos_urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_apps/videos/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_apps/videos/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/default.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/default.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/code.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/code.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/video_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/video_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +59,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -84,13 +102,14 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\myproject\Jv\static\js" />
+      <recent name="E:\myproject\Jv\media" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\myproject\Jv\media" />
+      <recent name="E:\myproject\Jv\media\head_image" />
+      <recent name="E:\myproject\Jv\templates" />
       <recent name="E:\myproject\Jv\static" />
       <recent name="E:\myproject\Jv\templates\text" />
-      <recent name="E:\myproject\Jv\static\js" />
-      <recent name="E:\myproject\Jv\static\css" />
-      <recent name="E:\myproject\Jv\templates" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.Jv">
@@ -182,7 +201,11 @@
       <workItem from="1622624840952" duration="7593000" />
       <workItem from="1622647968470" duration="92000" />
       <workItem from="1622679043654" duration="11591000" />
-      <workItem from="1622765362500" duration="3622000" />
+      <workItem from="1622765362500" duration="11052000" />
+      <workItem from="1622781625894" duration="3702000" />
+      <workItem from="1622790061528" duration="31415000" />
+      <workItem from="1622976096963" duration="594000" />
+      <workItem from="1623110587366" duration="277000" />
     </task>
     <task id="LOCAL-00001" summary="asd">
       <created>1621614368403</created>
@@ -331,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622682220593</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="数据库更新&#10;搜索功能&#10;分页功能&#10;评论功能">
+      <created>1622769264158</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1622769264158</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +379,8 @@
     <MESSAGE value="62新增个人页个人中心页订阅页浏览记录页大体结构" />
     <MESSAGE value="评论功能 ,  管理界面更新" />
     <MESSAGE value="界面更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="界面更新" />
+    <MESSAGE value="数据库更新&#10;搜索功能&#10;分页功能&#10;评论功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="数据库更新&#10;搜索功能&#10;分页功能&#10;评论功能" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Notifications" timestamp="1621642868752">
@@ -360,16 +391,16 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1621731060584" />
-    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1622682219375">
+    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1622769262623">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1622682219375" />
+    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1622769262623" />
     <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1622617912486" />
     <state x="766" y="72" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1622209259296" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1622686380860">
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1622806957251">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1622686380860" />
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1622806957251" />
     <state x="549" y="176" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1622592353714" />
     <state x="619" y="313" key="Gitee.ShareDialog" timestamp="1621643496112">
       <screen x="0" y="0" width="1536" height="824" />
@@ -435,10 +466,10 @@
     <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1621913463287" />
     <state x="366" y="110" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1622508744394" />
     <state x="338" y="72" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1622209219366" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1622682234946">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1623110865292">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1622682234946" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1623110865292" />
     <state x="361" y="153" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1622617926288" />
     <state x="451" y="191" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1622209270679" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1622624924084">
@@ -450,10 +481,10 @@
     </state>
     <state x="562" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1621913404547" />
     <state x="562" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1622617822977" />
-    <state x="431" y="152" width="672" height="711" key="search.everywhere.popup" timestamp="1622620811646">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1622816710268">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1621901563595" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1622816710268" />
     <state x="431" y="152" width="672" height="711" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1622620811646" />
   </component>
 </project>

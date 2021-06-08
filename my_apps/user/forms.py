@@ -117,4 +117,20 @@ class AddFavForm(forms.ModelForm):
 
     class Meta:
         model = UserFavorite
-        fields = ['fav_id','fav_type']
+        fields = ['fav_id', 'fav_type']
+
+
+class ChangePicForm(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = ['image']
+
+
+class ChangeInfoForm(forms.ModelForm):
+
+    class Meta:
+        model = UserProfile
+        fields = ['nick_name', 'birthday', 'gender', 'address']
+
+

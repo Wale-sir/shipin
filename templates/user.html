@@ -9,11 +9,17 @@
         这是个人信息页
     </h3>
 
-    用户头像<label>{{ user.image }}</label>
+    <img src="{{ MEDIA_URL }}{{ user.image }} " style="width: 50px; height: 50px;border-radius:30px">
+    <form method="POST" action="{% url 'change_pic' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+        {{ pic_form }}
+            <br>
+    <button type="submit">保存头像</button>
+    </form>
     <br>
     昵称:<label>{{ user.nick_name }}</label>
     <br>
-    性别:<label>{{ user.gender }}</label>
+    性别:<label>{{ user.get_gender_display }}</label>
     <br>
     手机:<label>{{ user.mobile }}</label>
     <br>
@@ -23,25 +29,175 @@
     <br>
     用户邮箱:<label>{{ user.email }}</label>
     <br>
+    地址:<label>{{ user.address }}</label>
+
+    <div class="layui-input-inline">
+         <button type="button" onclick="selectRole()" class="layui-btn layui-btn-primary layui-btn-radius">修改信息</button>
+    </div>
+    <div class="layui-input-inline">
+         <button type="button" onclick="changepass()" class="layui-btn layui-btn-primary layui-btn-radius">重置密码</button>
+    </div>
 
     <div class="my_fav">
         <h3>我的收藏</h3>
         <h4>视频</h4>
+    {% if not all_videos %}
+        您还没有关注视频哦!
+    {% else %}
         {% for video in all_videos %}
-            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ video.image }}"/></a>
+            <br>
+            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ video.image }}" style="height: 80px;width: 60px;"/></a><br>
                 <label>{{ video.name }}</label>
         {% endfor %}
+                    <a href="{% url 'user_fav' %}">查看更多</a>
+    {% endif %}
 
+
+        {% for star in all_stars %}
+            <a href=""> <img src="{{ star.user.image }}"></a>
+            <label>{{ star.name }}</label>
+
+        {% endfor %}
+        </div>
+
+
+<div class="history">
         <h3>历史观看</h3>
         {% for history in all_video_history %}
             <a href="{% url 'video_detail' history.video.id %}?video_sub_number={{ history.sub }}">
-                <img src="{{ history.video.image }}">
-            <label>{{ history.video.name }}</label>
-            <button>第{{ history.sub }}集</button>
+                <img src="{{ history.video.image }}" style="height: 80px;width: 60px;">
+            <label>{{ history.video.name }}第{{ history.sub }}集</label>
             </a>
-
         {% endfor %}
+                <a href="{% url 'user_history' %}">查看更多</a>
+</div>
+
+<!-- 修改密码 -->
+    <div class="layui-row" id="changepassword" style="display:none;">
+      <div class="layui-col-md11">
+     <form class="addvoteform layui-form" id="change_password_form">
+         {% csrf_token %}
+  <div class="layui-form-item">
+    <label class="layui-form-label">旧密码</label>
+    <div class="layui-input-block">
+      <input type="password" id="old_password" name="old_password" required  lay-verify="required" placeholder="旧密码" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+         <div class="layui-form-item">
+    <label class="layui-form-label">新密码</label>
+    <div class="layui-input-block">
+      <input type="password" id="new_password" name="new_password" required  lay-verify="required" placeholder="旧密码" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+         <div class="layui-form-item">
+    <label class="layui-form-label">重复密码</label>
+    <div class="layui-input-block">
+      <input type="password" id="new_check_password" name="new_check_password" required  lay-verify="required" placeholder="重复密码" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo2" id='change_pw_bu'>立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+   </div>
     </div>
 
+    <!-- 修改信息 -->
+ <div class="layui-row" id="popSearchRoleTest" style="display:none;">
+   <div class="layui-col-md11">
+     <form class="layui-form" method="POST" action="{% url 'change_info' %}">
+         {% csrf_token %}
 
+  <div class="layui-form-item">
+    <label class="layui-form-label">昵称</label>
+    <div class="layui-input-block">
+      <input type="text" id="nick_name" name="nick_name" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">生日</label>
+        <div class="layui-input-block">
+            <input type="text" id="borrowtimebox" name="birthday" autocomplete="off" required lay-verify="required"
+                class="layui-input" placeholder="请输入">
+        </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">性别</label>
+    <div class="layui-input-block">
+      <input type="radio" name="gender" value="male" title="男" checked>
+      <input type="radio" name="gender" value="female" title="女">
+    </div>
+  </div>
+         <div class="layui-form-item">
+    <label class="layui-form-label">地址</label>
+    <div class="layui-input-block">
+      <input type="text" id="address" name="address" required  lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo" id='changeinfo'>立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+   </div>
+ </div>
+{% endblock %}
+
+
+{% block custom_jss %}
+    <script>
+
+
+{#    修改信息弹窗 #}
+    function selectRole(){
+        layui.use('form', function(){
+        var form = layui.form;
+        laydate = layui.laydate;
+        $ = layui.$;
+        layer.open({
+        //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        type:1,
+        title:"修改信息",
+        area: ['50%','50%'],
+        content:$("#popSearchRoleTest").html(),
+        success:function () {
+        form.render();
+        laydate.render({     //创建时间选择框
+                elem: '#borrowtimebox' //指定元素
+              });
+            }
+        });
+    });
+}
+
+    {# 修改密码弹窗 #}
+    function changepass(){
+        layui.use('form', function(){
+        var form = layui.form;
+            laydate = layui.laydate;
+
+        $ = layui.$;
+        layer.open({
+        //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        type:1,
+        title:"修改信息",
+        area: ['50%','50%'],
+        content:$("#changepassword").html(),
+        success:function () {
+        form.render();
+        laydate.render({     //创建时间选择框
+                elem: '#changepassword' //指定元素
+              });
+            }
+        });
+    });
+
+    }
+
+</script>
 {% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    历史观看
+{% endblock %}
+
+{% block custom_bread %}
+    <a href="{% url 'user' %}">个人信息</a>>
+    <span>历史</span>
+{% endblock %}
+
+
+{% block content %}
+    <div class="history">
+        {% for history in all_video_history.object_list %}
+        <div>
+            <a href="{% url 'video_detail' history.video.id %}?video_sub_number=1"><img src="{{ history.video.image }}" style="height: 80px;width: 60px;"></a>
+            <br>
+            <a href="{% url 'video_detail' history.video.id %}?video_sub_number=1">{{ history.video.name }}</a>
+        </div>
+    {% endfor %}
+            <ul class="pagelist">
+                    {% if all_video_history.has_previous %}
+                        <li class="long">
+                            <a href="?{{ all_video_history.previous_page_number.querystring }}"
+                               class="prev">
+                                上一页
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for page in all_video_history.pages %}
+                        {% if page %}
+                            {% ifequal page all_video_history.number %}
+                                <li class="active">
+                                    <a href="?{{ page.querystring }}">{{ page }}</a>
+                                </li>
+                            {% else %}
+                                <li>
+                                     <a href="?{{ page.querystring }}" class="page">{{ page }}</a>
+                                </li>
+                            {% endifequal %}
+                        {% else %}
+                        <li class="none">...</li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if all_video_history.has_next %}
+                        <li class="long">
+                            <a href="?{{ all_video_history.next_page_number.querystring }}">下一页</a>
+                        </li>
+                    {% endif %}
+                 </ul>
+    </div>
+
+{% endblock %}

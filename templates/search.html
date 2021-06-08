@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
-    首页
+    搜索
 {% endblock %}
 
 {% block content %}
-
-    <style>
+        <style>
         .a{
             position: absolute;
             top: 50px;
@@ -53,13 +54,7 @@
 
 
     </style>
-    {% if msg == 're_em_msg' %}
-        <script>
-            alert('邮件发送成功!请确认');
-        </script>
-    {% endif %}
-
-    <div class="a">
+<div class="a">
         <form action="{% url 'search_view' %}" method="GET">
             <input type="text" class="b" name="keyword">
                 <button class="c" type="submit">
@@ -67,20 +62,17 @@
                 </button>
         </form>
     </div>
-
-<div style="height:200px">
-    <div class="layui-row layui-col-space10">
-        {% for video in all_video.object_list %}
-            <div class="layui-col-md5">
+            {% if not all_video.object_list %}
+            <h1>没有找到您需要的内容</h1>
+        {% endif %}
+            {% for video in all_video.object_list %}
+        <div>
             <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ video.image }}" style="height: 80px;width: 60px;"></a>
             <br>
             <a href="{% url 'video_detail' video.id %}?video_sub_number=1">{{ video.name }}</a>
-            </div>
+        </div>
     {% endfor %}
-    </div>
-</div>
-
-    <ul class="pagelist" style="right:500px">
+            <ul class="pagelist">
                     {% if all_video.has_previous %}
                         <li class="long">
                             <a href="?{{ all_video.previous_page_number.querystring }}"
@@ -112,6 +104,3 @@
                  </ul>
 {% endblock %}
 
-{% block custom_jss %}
-
-{% endblock %}
