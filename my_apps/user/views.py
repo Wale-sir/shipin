@@ -157,6 +157,23 @@ class UserVideoView(View):
         return render(request,'user_video.html', {'video_error': '发布失败'})
 
 
+class UserVideoDeleteView(View):
+    """用户删除个人视频"""
+    def post(self, request):
+        video_id = request.POST.get('video_id')
+        if video_id:
+            video = Video.objects.get(id=video_id)
+            video.delete()
+            return JsonResponse({
+                'status': 'success',
+                'msg': '删除成功'
+            })
+        return JsonResponse({
+            'status': 'fail',
+            'msg': '参数错误'
+        })
+
+
 class UserHistory(View):
     """用户历史界面"""
     def get(self,request):

@@ -68,6 +68,80 @@
         </form>
     </div>
 
+    <div class="page">
+    <ul>
+        <li>
+            <h2>视频类别</h2>
+            <div class="cont">
+                <a href="{% url 'home' %}?city={{ city_id }}">
+                   <span class="{% ifequal category ''%}active2{% endifequal %}">全部</span>
+               </a>
+            <a href="{% url 'home' %}?ct=1&city={{ city_id }}">
+                   <span class="{% ifequal category '1'%}active2{% endifequal %}">热血</span>
+               </a>
+            <a href="{% url 'home' %}?ct=2&city={{ city_id }}">
+                   <span class="{% ifequal category '2'%}active2{% endifequal %}">冒险</span>
+               </a>
+            <a href="{% url 'home' %}?ct=3&city={{ city_id }}">
+                   <span class="{% ifequal category '3'%}active2{% endifequal %}">搞笑</span>
+               </a>
+            <a href="{% url 'home' %}?ct=4&city={{ city_id }}">
+                   <span class="{% ifequal category '4'%}active2{% endifequal %}">运动</span>
+               </a>
+            <a href="{% url 'home' %}?ct=5&city={{ city_id }}">
+                   <span class="{% ifequal category '5'%}active2{% endifequal %}">竞技</span>
+               </a>
+            <a href="{% url 'home' %}?ct=6&city={{ city_id }}">
+                   <span class="{% ifequal category '6'%}active2{% endifequal %}">剧情</span>
+               </a>
+            <a href="{% url 'home' %}?ct=7&city={{ city_id }}">
+                   <span class="{% ifequal category '7'%}active2{% endifequal %}">穿越</span>
+               </a>
+            <a href="{% url 'home' %}?ct=8&city={{ city_id }}">
+                   <span class="{% ifequal category '8' %}active2{% endifequal %}">青春</span>
+               </a>
+            <a href="{% url 'home' %}?ct=9&city={{ city_id }}">
+                   <span class="{% ifequal category '9' %}active2{% endifequal %}">小说改</span>
+               </a>
+            <a href="{% url 'home' %}?ct=10&city={{ city_id }}">
+                   <span class="{% ifequal category '10' %}active2{% endifequal %}">后宫</span>
+               </a>
+            <a href="{% url 'home' %}?ct=11&city={{ city_id }}">
+                   <span class="{% ifequal category '11' %}active2{% endifequal %}">校园</span>
+               </a>
+            <a href="{% url 'home' %}?ct=12&city={{ city_id }}">
+                   <span class="{% ifequal category '12' %}active2{% endifequal %}">励志</span>
+               </a>
+            <a href="{% url 'home' %}?ct=13&city={{ city_id }}">
+                   <span class="{% ifequal category '13' %}active2{% endifequal %}">恋爱</span>
+               </a>
+            <a href="{% url 'home' %}?ct=14&city={{ city_id }}">
+                   <span class="{% ifequal category '14' %}active2{% endifequal %}">百合</span>
+               </a>
+            </div>
+        </li>
+    <li>
+        <h2>国家</h2>
+        <a href="?ct={{ category }}">
+                   <span class="{% ifequal city_id '' %}active2{% endifequal %}">全部</span>
+           </a>
+        <a href="?ct={{ category }}&city=1">
+                   <span class="{% ifequal city_id '1' %}active2{% endifequal %}">中国</span>
+           </a>
+        <a href="?ct={{ category }}&city=2">
+                   <span class="{% ifequal city_id '2' %}active2{% endifequal %}">日本</span>
+           </a>
+        <a href="?ct={{ category }}&city=3">
+                   <span class="{% ifequal city_id '3' %}active2{% endifequal %}">韩国</span>
+           </a>
+    <a href="?ct={{ category }}&city=4">
+                   <span class="{% ifequal city_id '4' %}active2{% endifequal %}">其他</span>
+           </a>
+    </li>
+    </ul>
+
+    </div>
+
 <div style="height:200px">
     <div class="layui-row layui-col-space10">
         {% for video in all_video.object_list %}
@@ -79,7 +153,6 @@
     {% endfor %}
     </div>
 </div>
-
     <ul class="pagelist" style="right:500px">
                     {% if all_video.has_previous %}
                         <li class="long">

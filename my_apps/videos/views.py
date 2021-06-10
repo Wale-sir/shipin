@@ -23,7 +23,20 @@ class HomeView(View):
             data['username'] = user.username
         data['user_is_au'] = request.user.is_authenticated
         data['login_form'] = LoginForm()
-        video_list = Video.objects.all().order_by('-start_time')
+
+        all_video = Video.objects.all()
+        # 按条件查询
+        category = request.GET.get('ct', '')
+        data['category'] = category
+        if category:
+            all_video = all_video.filter(video_type=category)  # 按类别分
+
+        city = request.GET.get('city','')
+        data['city'] = city
+        if city:
+            all_video = all_video.filter(nationality_type=city)  # 按国家分
+
+        video_list = all_video.order_by('-start_time')
 
         # 分页
         try:
@@ -54,7 +67,10 @@ class VideoDetailView(View):
         video_sub_number = request.GET.get('video_sub_number')
 
         # 获取这个视频的某一集
-        data['video_sub'] = VideoSub.objects.get(video=video, number=video_sub_number)
+        try:
+            data['video_sub'] = VideoSub.objects.get(video=video, number=video_sub_number)
+        except:
+            return redirect(reverse('home'))
 
         # 收藏状态
         fav_video = False
@@ -87,7 +103,7 @@ class VideoDetailView(View):
 
 
 class AddComment(View):
-    """用户评论功能"""
+    """用户评论视频功能"""
     def post(self,request):
         if not request.user.is_authenticated:
             return JsonResponse({
@@ -111,7 +127,7 @@ class AddComment(View):
 
 
 class SearchView(View):
-
+    """搜索功能"""
     def get(self,request):
         keyword = request.GET.get('keyword','')
         if keyword == '':

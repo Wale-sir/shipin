@@ -64,6 +64,7 @@ class Video(BaseModel):
                                verbose_name='人气')
     hav_num = models.IntegerField(default=0,
                                   verbose_name='收藏数')
+    is_good = models.BooleanField(default=False, verbose_name='是否为精品')
     status = models.BooleanField(default=True,
                                  verbose_name='是否可以观看')
     start_time = models.DateTimeField(verbose_name='开播')

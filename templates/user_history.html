@@ -15,7 +15,7 @@
     <div class="history">
         {% for history in all_video_history.object_list %}
         <div>
-            <a href="{% url 'video_detail' history.video.id %}?video_sub_number=1"><img src="{{ history.video.image }}" style="height: 80px;width: 60px;"></a>
+            <a href="{% url 'video_detail' history.video.id %}?video_sub_number=1"><img src="{{ MEDIA_URL }}{{ history.video.image }}" style="height: 80px;width: 60px;"></a>
             <br>
             <a href="{% url 'video_detail' history.video.id %}?video_sub_number=1">{{ history.video.name }}</a>
         </div>
