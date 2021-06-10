@@ -146,8 +146,8 @@ class UserVideoView(View):
 
             field = sub_form.cleaned_data['user_field']
 
-            # 先保存视频, 再用sub 保存文件
-            video = Video.objects.create(user=request.user, name=name, image=image, info=info, start_time=datetime.now())
+            # 先保存视频, 再用sub保存文件   15为用户发布视频
+            video = Video.objects.create(user=request.user, name=name, image=image, info=info, start_time=datetime.now(), video_type='15')
             video.video_sub.create(
                 video=video,
                 user_field=field
@@ -167,6 +167,33 @@ class UserVideoDeleteView(View):
             return JsonResponse({
                 'status': 'success',
                 'msg': '删除成功'
+            })
+        return JsonResponse({
+            'status': 'fail',
+            'msg': '参数错误'
+        })
+
+
+class UserMessageView(View):
+    """用户消息"""
+    def get(self, request):
+        if not request.user.is_authenticated:
+            return redirect(reverse('home'))
+        data = {}
+        data['user_is_au'] = request.user.is_authenticated
+        data['user_video'] = Video.objects.filter(user=request.user)
+        data['all_message'] = UserMessage.objects.all().order_by('-add_time')
+        return render(request, 'user_message.html', data)
+
+    def post(self, request):
+        msg_id = request.POST.get('message_id')
+        if msg_id:
+            msg = UserMessage.objects.get(id=msg_id)
+            msg.has_read = True
+            msg.save()
+            return JsonResponse({
+                'status': 'success',
+                'msg': '已读'
             })
         return JsonResponse({
             'status': 'fail',

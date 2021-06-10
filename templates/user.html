@@ -72,13 +72,18 @@
 
 <div class="history">
         <h3>历史观看</h3>
-        {% for history in all_video_history %}
+{% if not all_video_history %}
+        <h2>您还没有观看过视频</h2>
+    {% else %}
+                {% for history in all_video_history %}
             <a href="{% url 'video_detail' history.video.id %}?video_sub_number={{ history.sub }}">
                 <img src="{{ MEDIA_URL }}{{ history.video.image }}" style="height: 80px;width: 60px;">
             <label>{{ history.video.name }}第{{ history.sub }}集</label>
             </a>
         {% endfor %}
                 <a href="{% url 'user_history' %}">查看更多</a>
+{% endif %}
+
 </div>
 
 <!-- 修改密码 -->

@@ -24,7 +24,7 @@ class HomeView(View):
         data['user_is_au'] = request.user.is_authenticated
         data['login_form'] = LoginForm()
 
-        all_video = Video.objects.all()
+        all_video = Video.objects.all().exclude(video_type='15')
         # 按条件查询
         category = request.GET.get('ct', '')
         data['category'] = category
@@ -46,6 +46,11 @@ class HomeView(View):
         p = Paginator(video_list, per_page=20, request=request)
         all_video = p.page(page)
         data['all_video'] = all_video
+
+        # 精品视频
+        data['good_videos'] = Video.objects.filter(is_good=True)
+        # 用户发布视频 15为用户发布视频
+        data['user_videos'] = Video.objects.filter(video_type='15')
         return render(request, 'home.html', data)
 
 
