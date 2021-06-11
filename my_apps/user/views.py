@@ -201,6 +201,23 @@ class UserMessageView(View):
         })
 
 
+class UserMessageDeleteView(View):
+    """用户消息删除"""
+    def post(self, request):
+        message_id = request.POST.get('message_id')
+        if message_id:
+            msg = UserMessage.objects.get(id=message_id)
+            msg.delete()
+            return JsonResponse({
+                'status': 'success',
+                'msg': '删除成功'
+            })
+        return JsonResponse({
+            'status': 'fail',
+            'msg': '参数错误'
+        })
+
+
 class UserHistory(View):
     """用户历史界面"""
     def get(self,request):
@@ -220,6 +237,22 @@ class UserHistory(View):
 
         data['all_video_history'] = all_video_history
         return render(request,'user_history.html',data)
+
+
+class UserDeleteHistoryView(View):
+    """用户删除历史记录"""
+    def post(self, request):
+        his_id = request.POST.get('his_id')
+        if his_id:
+            VideoHistory.objects.get(id=his_id).delete()
+            return JsonResponse({
+                'status': 'success',
+                'msg': '删除成功'
+            })
+        return JsonResponse({
+            'status': 'fail',
+            'msg': '参数错误'
+        })
 
 
 class ChangePic(View):

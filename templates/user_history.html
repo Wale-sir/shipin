@@ -18,6 +18,7 @@
             <a href="{% url 'video_detail' history.video.id %}?video_sub_number=1"><img src="{{ MEDIA_URL }}{{ history.video.image }}" style="height: 80px;width: 60px;"></a>
             <br>
             <a href="{% url 'video_detail' history.video.id %}?video_sub_number=1">{{ history.video.name }}</a>
+            <button onclick="delete_history({{ history.id }})" class="layui-upload-button">删除</button>
         </div>
     {% endfor %}
             <ul class="pagelist">
@@ -52,4 +53,30 @@
                  </ul>
     </div>
 
+{% endblock %}
+
+{% block custom_jss %}
+    <script type="text/javascript">
+{#    点击删除历史记录 #}
+        function delete_history(his_id){
+        $.ajax({
+            cache:false,
+            type:"POST",
+            url:'{% url 'user_history_delete' %}',
+            data:{'his_id':his_id},
+            async:true,
+            beforeSend:function (xhr,setting) {
+                xhr.setRequestHeader("X-CSRFToken","{{ csrf_token }}");
+            },
+            success:function (data) {
+                if(data.status == 'fail'){
+                        alert(data.msg)
+                }else if (data.status == 'success'){
+                        alert(data.msg);
+                        window.location.reload()
+                }
+            }
+        })
+    }
+    </script>
 {% endblock %}

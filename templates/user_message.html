@@ -21,6 +21,7 @@
                     未读
                 {% endif %}
             </span>
+            <button class="layui-upload-button" onclick="delete_message({{ msg.id }})">删除</button>
         </div>
     {% endfor %}
 </div>
@@ -29,6 +30,7 @@
 
 {% block custom_jss %}
     <script>
+{# 点击更改信息是否已读 #}
     function change_status(current_elem,message_id){
         $.ajax({
             cache:false,
@@ -44,6 +46,28 @@
                         alert(data.msg)
                 }else if (data.status == 'success'){
                     current_elem.text(data.msg)
+                }
+            }
+        })
+    }
+
+    {# 删除信息 #}
+    function delete_message(message_id){
+        $.ajax({
+            cache:false,
+            type:"POST",
+            url:'{% url 'user_message_delete' %}',
+            data:{'message_id':message_id},
+            async:true,
+            beforeSend:function (xhr,setting) {
+                xhr.setRequestHeader("X-CSRFToken","{{ csrf_token }}");
+            },
+            success:function (data) {
+                if(data.status == 'fail'){
+                        alert(data.msg)
+                }else if (data.status == 'success'){
+                        alert(data.msg);
+                        window.location.reload()
                 }
             }
         })
