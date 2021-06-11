@@ -6,20 +6,65 @@
 {% endblock %}
 
 
-
 {% block custom_bread %}
     <a href="{% url 'home' %}">主页</a> >
     <span>{{ video.name }}&nbsp; 第{{ video_sub.number }}集</span>
 {% endblock %}
 {% block content %}
-    <!-- 收藏视频  -->
-    <div class="hav" id="jsLeftBtn">
+    <div class="top">
+    <div class="rightbox">
+    用户:
+        {% if  video.user.nick_name %}
+            {% else %}
+            {{ video.user.username }}
+        {% endif %}
+    <img src="{{ MEDIA_URL }}{{ video.user.image }}" style="height: 30px;width: 30px">
+    <button id="jsRightBtn" onclick="add_user($(this),{{ video.user.id }},2)">
+        {% if fav_user %}
+            取消收藏
+        {% else %}
+            收藏
+        {% endif %}
+    </button>
+        关注数:
+    <span id="fans-num">
+        {{ video.user.fans }}
+    </span>
+    </div>
+
+    <div class="left-box">
+            <!-- 收藏视频  -->
+    <div class="hav">
+        <button id="jsLeftBtn" >
         {% if fav_video %}
             取消收藏
         {% else %}
             收藏
         {% endif %}
+    </button>
+    收藏数:
+    <span id="hav_num">
+        {{ video_sub.video.hav_num }}
+    </span>
     </div>
+
+
+    <!-- 点赞视频 -->
+    <div class="video_likes">
+    <button onclick="add_likes($('#likes_num'), {{ video_sub.id }})">
+        点赞
+    </button>
+        点赞数:
+    <span class="likes" id="likes_num">
+        {{ video_sub.likes }}
+    </span>
+    </div>
+    </div>
+    </div>
+
+
+
+
     <!-- 视频播放 -->
     {% if video_sub.url %}
          <div class="video">
@@ -121,7 +166,32 @@
         })
     });
 
+{#  添加点赞数  #}
+function add_likes(current_elem,video_sub_id){
+        $.ajax({
+            cache:false,
+            type:"POST",
+            url:'{% url 'add_likes' %}',
+            data:{'video_sub_id':video_sub_id},
+            async:true,
+            beforeSend:function (xhr,setting) {
+                xhr.setRequestHeader("X-CSRFToken","{{ csrf_token }}");
+            },
+            success:function (data) {
+                if(data.status == 'fail'){
+                    if(data.msg == '用户未登录'){
+                        alert(data.msg)
+                    }else{
+                        alert(data.msg)
+                    }
+                }else if (data.status == 'success'){
+                    current_elem.text(data.num);
+                }
+            }
+        })
+    }
 
+{# 收藏 #}
 function add_fav(current_elem,fav_id,fav_type){
         $.ajax({
             cache:false,
@@ -135,12 +205,13 @@ function add_fav(current_elem,fav_id,fav_type){
             success:function (data) {
                 if(data.status == 'fail'){
                     if(data.msg == '用户未登录'){
-                        window.location.href = "{% url 'login' %}"
+                        alert(data.msg)
                     }else{
                         alert(data.msg)
                     }
                 }else if (data.status == 'success'){
-                    current_elem.text(data.msg)
+                    current_elem.text(data.msg);
+                    $('#hav_num').text(data.num)  // 更改收藏数
                 }
             }
         })
@@ -152,5 +223,29 @@ function add_fav(current_elem,fav_id,fav_type){
         });
     });
 
+function add_user(current_elem,fav_id,fav_type){
+        $.ajax({
+            cache:false,
+            type:"POST",
+            url:'{% url 'add_fav' %}',
+            data:{'fav_id':fav_id,'fav_type':fav_type},
+            async:true,
+            beforeSend:function (xhr,setting) {
+                xhr.setRequestHeader("X-CSRFToken","{{ csrf_token }}");
+            },
+            success:function (data) {
+                if(data.status == 'fail'){
+                    if(data.msg == '用户未登录'){
+                        alert(data.msg)
+                    }else{
+                        alert(data.msg)
+                    }
+                }else if (data.status == 'success'){
+                    current_elem.text(data.msg);
+                    $('#fans-num').text(data.num)
+                }
+            }
+        })
+    }
 </script>
 {% endblock %}

@@ -418,6 +418,11 @@ class FavView(View):
     """收藏功能"""
 
     def post(self,request):
+        if not request.user.is_authenticated:
+            return JsonResponse({
+                'status': 'fail',
+                'msg': '用户未登录'
+            })
         form = AddFavForm(request.POST)
         if form.is_valid():
             user = request.user
@@ -431,21 +436,23 @@ class FavView(View):
             )
             if us:
                 us.delete()
+                num = 0
                 if fav_type == '1':
                     video = Video.objects.get(id=fav_id)
                     video.hav_num -= 1
                     if video.hav_num < 0:
                         video.hav_num = 0
+                    num = video.hav_num
                     video.save()
                 elif fav_type == '2':
-                    user = VideoStar.objects.get(id=fav_id).user
+                    user = UserProfile.objects.get(id=fav_id)
                     user.fans -= 1
-                    if user.hav_num < 0:
-                        user.hav_num = 0
+                    num = user.fans
                     user.save()
                 return JsonResponse({
                     'status': 'success',
-                    'msg': '收藏'
+                    'msg': '收藏',
+                    'num': num
                 })
 
             else:
@@ -454,21 +461,23 @@ class FavView(View):
                         fav_id=fav_id,
                         fav_type=fav_type
                     ).save()
+                num = 0
                 if fav_type == '1':
                     video = Video.objects.get(id=fav_id)
                     video.hav_num += 1
                     if video.hav_num < 0:
                         video.hav_num = 0
+                    num = video.hav_num
                     video.save()
                 elif fav_type == '2':
-                    user = VideoStar.objects.get(id=fav_id).user
+                    user = UserProfile.objects.get(id=fav_id)
                     user.fans += 1
-                    if user.hav_num < 0:
-                        user.hav_num = 0
+                    num = user.fans
                     user.save()
                 return JsonResponse({
                     'status': 'success',
-                    'msg': '取消收藏'
+                    'msg': '取消收藏',
+                    'num': num
                 })
         else:
             return JsonResponse({

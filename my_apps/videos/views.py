@@ -79,11 +79,16 @@ class VideoDetailView(View):
 
         # 收藏状态
         fav_video = False
+        fav_user = False
         # 存储观看记录
         if data['user_is_au']:
-            self.history_save(request.user,video=video,sub=video_sub_number)
+            self.history_save(request.user, video=video,sub=video_sub_number)
             if UserFavorite.objects.filter(user=request.user,fav_id=video.id,fav_type='1'):
                 fav_video = True
+            if UserFavorite.objects.filter(user=request.user,fav_id=video.user.id,fav_type='2'):
+                fav_user = True
+
+        data['fav_user'] = fav_user
         data['fav_video'] = fav_video
 
         # 获取这个视频的所有集数
@@ -104,7 +109,32 @@ class VideoDetailView(View):
         if vid_hty:
             vid_hty.modify_time = datetime.now()
         else:
-            VideoHistory.objects.create(user=user,video=video, sub=sub)
+            VideoHistory.objects.create(user=user, video=video, sub=sub)
+
+
+class AddLikes(View):
+    """视频点赞功能"""
+    def post(self, request):
+        if request.user.is_authenticated:
+            video_sub_id = request.POST.get('video_sub_id')
+            if video_sub_id:
+                video_sub = VideoSub.objects.get(id=video_sub_id)
+                video_sub.likes += 1
+                video_sub.save()
+                num = video_sub.likes
+                return JsonResponse({
+                    'status': 'success',
+                    'msg': 'ok',
+                    'num': num
+                })
+            return JsonResponse({
+                'status': 'fail',
+                'msg': '参数错误'
+        })
+        return JsonResponse({
+            'status': 'fail',
+            'msg': '用户未登录'
+        })
 
 
 class AddComment(View):
