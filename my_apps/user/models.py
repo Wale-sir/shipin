@@ -99,7 +99,16 @@ class UserMessage(BaseModel):
     user = models.ForeignKey(
         UserProfile,
         on_delete=models.CASCADE,
-        verbose_name='用户'
+        related_name='user',
+        verbose_name='发送用户'
+    )
+    to_user = models.ForeignKey(
+        UserProfile,
+        on_delete=models.CASCADE,
+        related_name='msg_to_user',
+        blank=True,
+        null=True,
+        verbose_name='接受用户'
     )
     title = models.CharField(
         default='title',

@@ -67,7 +67,7 @@
         {% endif %}
             {% for video in all_video.object_list %}
         <div>
-            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ video.image }}" style="height: 80px;width: 60px;"></a>
+            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ MEDIA_URL }}{{ video.image }}" style="height: 80px;width: 60px;"></a>
             <br>
             <a href="{% url 'video_detail' video.id %}?video_sub_number=1">{{ video.name }}</a>
         </div>

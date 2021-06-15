@@ -31,7 +31,7 @@ class UserView(View):
                 video = Video.objects.get(id=fav.fav_id)
                 all_videos.append(video)
             elif fav.fav_type == '2':
-                star = VideoStar.objects.get(id=fav.fav_id)
+                star = UserProfile.objects.get(id=fav.fav_id)
                 all_star.append(star)
 
         # 进入个人主页时,删除一些历史记录
@@ -79,7 +79,7 @@ class UserFavView(View):
                 video = Video.objects.get(id=fav.fav_id)
                 all_videos.append(video)
             elif fav.fav_type == '2':
-                star = VideoStar.objects.get(id=fav.fav_id)
+                star = UserProfile.objects.get(id=fav.fav_id)
                 all_star.append(star)
 
         # 视频分页
@@ -182,7 +182,7 @@ class UserMessageView(View):
         data = {}
         data['user_is_au'] = request.user.is_authenticated
         data['user_video'] = Video.objects.filter(user=request.user)
-        data['all_message'] = UserMessage.objects.all().order_by('-add_time')
+        data['all_message'] = UserMessage.objects.filter(to_user=request.user).order_by('-add_time')
         return render(request, 'user_message.html', data)
 
     def post(self, request):
@@ -275,6 +275,7 @@ class ChangeInfo(View):
             birthday = form.cleaned_data['birthday']
             gender = form.cleaned_data['gender']
             address = form.cleaned_data['address']
+
             user = request.user
             user.nick_name = nick_name
             user.birthday = birthday
@@ -284,6 +285,58 @@ class ChangeInfo(View):
             return redirect(reverse('user'))
         else:
             return redirect(reverse('user'))
+
+
+class DetailUserView(View):
+    """用户详情页面"""
+    def get(self, request):
+        data={}
+        data['user_is_au'] = request.user.is_authenticated
+
+        user_id = request.GET.get('user_id')
+        user = UserProfile.objects.get(id=user_id)
+        data['user'] = user
+
+        # 获取这个用户的所有视频发布
+        all_video = Video.objects.filter(user=user)
+        data['all_video'] = all_video
+
+        fav_user = False
+        if data['user_is_au']:
+            if UserFavorite.objects.filter(user=request.user, fav_id=user.id, fav_type='2'):
+                fav_user = True
+        data['fav_user'] = fav_user
+
+        return render(request, 'detail_user.html', data)
+
+
+class SendMessageView(View):
+    """发送私信"""
+    def post(self, request):
+        msg = request.POST.get('message')
+        user_id = request.GET.get('user_id')
+        page = request.GET.get('page')
+
+        if user_id and msg:
+            user = UserProfile.objects.get(id=user_id)
+            UserMessage.objects.create(user=request.user,to_user=user, title='用户:{}发送'.format(request.user.username), message=msg)
+
+            data = {}
+            data['user_is_au'] = request.user.is_authenticated
+            user_id = request.GET.get('user_id')
+            user = UserProfile.objects.get(id=user_id)
+            data['user'] = user
+
+            # 获取这个用户的所有视频发布
+            all_video = Video.objects.filter(user=user)
+            data['all_video'] = all_video
+            if page == 'user_msg':
+                return redirect(reverse('user_message'))
+            return render(request, 'detail_user.html', data)
+        return JsonResponse({
+            'status': 'fail',
+            'msg': '参数错误'
+        })
 
 
 class ReView(View):

@@ -10,7 +10,7 @@ class UserFavoriteAdmin(admin.ModelAdmin):
 
 
 class UserMessageAdmin(admin.ModelAdmin):
-    list_display = ['user', 'title', 'has_read']
+    list_display = ['user', 'title', 'to_user', 'has_read']
     search_fields = ['user__username', 'title', 'message']
     list_filter = ['has_read']
 

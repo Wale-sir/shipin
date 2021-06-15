@@ -64,9 +64,16 @@
             {% else %}
             {% for star in all_star.object_list %}
                 <div>
-                    <a href=""><img src="{{ star.user.image }}" style="height: 80px;width: 60px;"></a>
+                    <a href=""><img src="{{ MEDIA_URL }}{{ star.image }}" style="height: 80px;width: 60px;"></a>
                     <br>
-                    <a href="">{{ star.name }}</a>
+
+                    <a href="">
+                        {% if star.nick_name %}
+                                {{ star.nick_name}}
+                            {% else %}
+                                {{ star.username }}
+                    {% endif %}
+                    </a>
                 </div>
             {% endfor %}
                     <ul class="pagelist">

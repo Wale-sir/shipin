@@ -21,12 +21,34 @@
                     未读
                 {% endif %}
             </span>
+            <button class="layui-upload-button" onclick="return_message()">回复</button>
             <button class="layui-upload-button" onclick="delete_message({{ msg.id }})">删除</button>
+
+                    <!-- 发送信息 -->
+    <div class="layui-row" id="sendmessage" style="display:none;">
+      <div class="layui-col-md11">
+     <form class="addvoteform layui-form" id="change_password_form" method="POST" action="{% url 'send_message' %}?user_id={{ msg.user.id }}&page=user_msg">
+         {% csrf_token %}
+  <div class="layui-form-item">
+    <label class="layui-form-label">回复</label>
+    <div class="layui-input-block">
+        <textarea style="height: 250px" id="message" name="message" required  lay-verify="required" autocomplete="off" class="layui-input"> </textarea>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo2" id='change_pw_bu'>立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+   </div>
+    </div>
+</div>
         </div>
     {% endfor %}
-</div>
-
 {% endblock %}
+
 
 {% block custom_jss %}
     <script>
@@ -93,5 +115,28 @@
         });
     });
 }
+
+        {# 回复消息弹窗 #}
+    function return_message(){
+        layui.use('form', function(){
+        var form = layui.form;
+            laydate = layui.laydate;
+        $ = layui.$;
+        layer.open({
+        //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+        type:1,
+        title:"发送消息",
+        area: ['50%','50%'],
+        content:$("#sendmessage").html(),
+        success:function () {
+        form.render();
+        laydate.render({     //创建时间选择框
+                elem: '#sendmessage' //指定元素
+              });
+            }
+        });
+    });
+
+    }
     </script>
 {% endblock %}

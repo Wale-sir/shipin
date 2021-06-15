@@ -14,11 +14,14 @@
     <div class="top">
     <div class="rightbox">
     用户:
-        {% if  video.user.nick_name %}
+    <a href="{% url 'detail_user' %}?user_id={{ video.user.id }}">
+                {% if  video.user.nick_name %}
             {% else %}
             {{ video.user.username }}
         {% endif %}
     <img src="{{ MEDIA_URL }}{{ video.user.image }}" style="height: 30px;width: 30px">
+    </a>
+
     <button id="jsRightBtn" onclick="add_user($(this),{{ video.user.id }},2)">
         {% if fav_user %}
             取消收藏

@@ -2,7 +2,7 @@ from django.urls import path
 from .views import UserView, ReView, LoginView, \
     LogoutView, SendEmailView, ActiveUserView, FavView,\
     UserFavView, UserHistory, ChangePic, ChangeInfo, ChangePassword, UserVideoView,UserVideoDeleteView,\
-    UserMessageView, UserMessageDeleteView, UserDeleteHistoryView
+    UserMessageView, UserMessageDeleteView, UserDeleteHistoryView, DetailUserView, SendMessageView
 
 urlpatterns = [
     path('user/', UserView.as_view(), name='user'),
@@ -16,6 +16,8 @@ urlpatterns = [
     path('user/video/delete/', UserVideoDeleteView.as_view(), name='user_video_delete'),
     path('user/message/', UserMessageView.as_view(), name='user_message'),
     path('user/message/delete/', UserMessageDeleteView.as_view(), name='user_message_delete'),
+    path('detail/user/', DetailUserView.as_view(), name='detail_user'),
+    path('user/send_message/', SendMessageView.as_view(), name='send_message'),
 
     path('re/', ReView.as_view(), name='re'),
     path('login/', LoginView.as_view(), name='login'),
