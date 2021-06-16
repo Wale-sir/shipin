@@ -163,6 +163,8 @@ class UserVideoDeleteView(View):
         video_id = request.POST.get('video_id')
         if video_id:
             video = Video.objects.get(id=video_id)
+            for fav in UserFavorite.objects.filter(fav_id=video_id):
+                fav.delete()
             video.delete()
             return JsonResponse({
                 'status': 'success',

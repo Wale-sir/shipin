@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     首页
 {% endblock %}
@@ -7,9 +8,9 @@
 
     <style>
         .a{
-            position: absolute;
-            top: 50px;
-            left: 1200px;
+            position: fixed;
+            top: 10%;
+            left: 50%;
             transform: translate(-50%,-50%);
             background-color: #2f3640;
             height: 40px;
@@ -53,26 +54,110 @@
 
 
     </style>
-    {% if msg == 're_em_msg' %}
-        <script>
-            alert('邮件发送成功!请确认');
-        </script>
-    {% endif %}
+    <style>
+            html,
+            .gd {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            }
 
-    <div class="a">
-        <form action="{% url 'search_view' %}" method="GET">
-            <input type="text" class="b" name="keyword">
-                <button class="c" type="submit">
-                    <img src="/static/搜索框.png" style="width: 30px;">
-                </button>
-        </form>
-    </div>
+        .box2 {
+            position: fixed;
+            left: 125px;
+            top: 50px;
+            width: 459px;
+            height: 202px;
+            margin: 100px auto;
+            overflow: hidden;
+        }
 
-    <div class="page">
-    <ul>
-        <li>
-            <h2>视频类别</h2>
-            <div class="cont">
+        .gdt,
+        ol,
+        .gd1 {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .gdt {
+            position: absolute;
+        }
+
+        .gdt .gd1 {
+            float: left;
+            width: 459px;
+            height: 202px;
+        }
+
+        .gdt .gd2 {
+            display: block;
+            width: 459px;
+            height: 202px;
+        }
+
+        ol {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+        }
+
+        ol .gd1 {
+
+            float: left;
+            width: 15px;
+            height: 15px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            margin: 0 5px;
+            border-radius: 50%;
+        }
+
+        .active {
+            background-color: greenyellow;
+        }
+
+        .left,
+        .right {
+            display: none;
+            position: absolute;
+            width: 30px;
+            height: 60px;
+            line-height: 60px;
+            font-size: 24px;
+            font-weight: bold;
+            color: greenyellow;
+            background-color: rgba(129, 92, 148, 0.5);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+               .right {
+            right: 0;
+                       }
+
+.t1{
+    display: inline-block;
+    margin: 0 30px;
+    height: 120px;
+}
+.l{
+
+}
+.r{
+
+}
+    #l{
+        float:left;width:50%; height:100%;background: #393D49;
+}
+        #r{float:right;width: 50%; height:100%;}
+        </style>
+    <div class="page" style="background: #393D49;height: 80px;position: fixed;top: 9px">
+        <ul>
+            <li>
+                <h2>视频类别</h2>
+                <div class="cont">
                 <a href="{% url 'home' %}?city={{ city_id }}">
                    <span class="{% ifequal category ''%}active2{% endifequal %}">全部</span>
                </a>
@@ -141,50 +226,197 @@
     </ul>
 
     </div>
+    {% if msg == 're_em_msg' %}
+        <script>
+            alert('邮件发送成功!请确认');
+        </script>
+    {% endif %}
 
-<div style="height:200px">
-    <div class="layui-row layui-col-space10">
+    <div align="center">
+        <form action="{% url 'search_view' %}" method="GET" style="height: 50px;position: fixed;top: 5px;right: 30%">
+            <input type="text"name="keyword">
+                <button type="submit">搜索
+                </button>
+        </form>
+    </div>
+
+    <div style="height: 250px;position:relative">
+    <div class="l" id="l">
+
+            <!-- 搭建结构 -->
+    <div class="box2">
+        <ul class="gdt">
+            <li class="gd1"><img class="gd2" src="/static/images/1.jpg" alt=""></li>
+            <li class="gd1"><img class="gd2" src="/static/images/2.jpg" alt=""></li>
+            <li class="gd1"><img class="gd2" src="/static/images/3.jpg" alt=""></li>
+            <li class="gd1"><img class="gd2" src="/static/images/4.jpg" alt=""></li>
+            <li class="gd1"><img class="gd2" src="/static/images/5.jpg" alt=""></li>
+        </ul>
+        <ol></ol>
+        <span class="left iconfont">&#xe64a;</span>
+        <span class="right iconfont">&#xe637;</span>
+    </div>
+    <script src="/static/js/animate.js"></script>
+    <script>
+        // 1.获取元素
+        let box2 = document.querySelector('.box2');
+        let ul = document.querySelector('.gdt');
+        let ol = document.querySelector('ol');
+        let left = document.querySelector('.left');
+        let right = document.querySelector('.right');
+        let flag = true; // 假设动画已经执行完成了
+        // 创建计数器
+        let num = 0;
+        // 将第一张图片克隆放到后面
+        ul.appendChild(ul.children[0].cloneNode(true));
+        // 计算ul的宽度
+        ul.style.width = ul.children.length * 840 + 'px';
+
+        // 更具图片的数量来创建小圆点
+        for (let i = 0; i < ul.children.length - 1; i++) {
+            // 创建节点
+            let li = document.createElement('li');
+            // 给每个li添加自定属性
+            li.dataset['index'] = i;
+            // 将节点添加到ol里面
+            ol.appendChild(li);
+            // 绑定事件
+            li.onclick = function () {
+                // 清除其他小圆点的类名
+                for (let i = 0; i < ol.children.length; i++) {
+                    ol.children[i].classList.remove('active');
+                }
+                // 给被点击的元素添加类名
+                this.classList.add('active');
+                // 让ul移动到对应的位置
+                num = this.dataset['index'];
+                animate(ul, {
+                    left: -num * box2.offsetWidth
+                });
+                console.log(box2.offsetWidth)
+            }
+        }
+
+        // 默认给第一个小圆点添加样式
+        ol.children[0].classList.add('active');
+
+        // 给右箭头添加事件
+        right.addEventListener('click', () => {
+            if (flag) {
+                flag = false;
+                // 判断是不是在最后一个元素
+                if (num == ul.children.length - 1) {
+                    num = 0;
+                    // 如果在最后一个元素,瞬间回到第一个元素
+                    // 实现无缝切换
+                    ul.style.left = 0;
+                }
+                num++;
+                // 为了防止被多次点击速度越来越快,我们需要判断段动画是否完成了
+                animate(ul, {
+                    left: -num * box2.offsetWidth
+                },() => {
+                    // 当动画执行完成后,执行回调函数
+                    // 让flag变为true
+                    flag = true;
+                })
+                // 让小圆点跟着图片走
+                for (let i = 0; i < ol.children.length; i++) {
+                    ol.children[i].classList.remove('active');
+                }
+                // 给对应的小圆点添加上样式
+                // 应为我们做了无缝切换,只有五个小圆点,实际上有六张图片,我们还需要判断一下
+                if (num == ul.children.length - 1) {
+                    ol.children[0].classList.add('active');
+                } else {
+                    ol.children[num].classList.add('active');
+                }
+            }
+
+        })
+
+        // 给左箭头添加事件
+        left.addEventListener('click', () => {
+            if (flag) {
+                flag = false;
+                // 判断是不是第一个元素
+                if (num == 0) {
+                    num = ul.children.length - 1;
+                    // 如果是第一个元素,我们瞬间切换到最后一个元素
+                    // 应为第一个元素和最后一个元素是一样的,所以可以实现
+                    // 无缝切换
+                    ul.style.left = -num * box.offsetWidth + 'px';
+                }
+                num--;
+                // 为了防止被多次点击速度越来越快,我们需要判断段动画是否完成了
+                animate(ul, {
+                    left: -num * box2.offsetWidth
+                },() => {
+                    // 当动画执行完成后,执行回调函数
+                    // 让flag变为true
+                    flag = true;
+                })
+                // 让小圆点跟着图片走
+                for (let i = 0; i < ol.children.length; i++) {
+                    ol.children[i].classList.remove('active');
+                }
+                // 给对应的小圆点添加上样式
+                // 应为我们做了无缝切换,只有五个小圆点,实际上有六张图片,我们还需要判断一下
+                if (num == ul.children.length - 1) {
+                    ol.children[0].classList.add('active');
+                } else {
+                    ol.children[num].classList.add('active');
+                }
+            }
+
+        })
+
+        // 让轮播图自动轮播
+        let timer = setInterval(function() {
+            right.click();
+        },2000)
+
+        // 鼠标移入,显示箭头,并且停止轮播
+        box2.addEventListener('mouseenter',()=> {
+            right.style.display = 'block';
+            left.style.display = 'block';
+            // 清除定时器
+            clearInterval(timer);
+        })
+        // 鼠标移出,继续轮播
+        box2.addEventListener('mouseleave',() => {
+            // 隐藏按钮
+            right.style.display = 'none';
+            left.style.display = 'none';
+            timer = setInterval(function() {
+                right.click();
+            },2000)
+        })
+    </script>
+</div>
+    <div class="r" id="r">
+        <div class="t1"><img src="/static/images/1.jpg" style="height: 96px;width: 170px"></div>
+        <div class="t1"><img src="/static/images/1.jpg" style="height: 96px;width: 170px"></div>
+                <div class="t1"><img src="/static/images/1.jpg" style="height: 96px;width: 170px"></div>
+        <div class="t1"><img src="/static/images/1.jpg" style="height: 96px;width: 170px"></div>
+                <div class="t1"><img src="/static/images/1.jpg" style="height: 96px;width: 170px"></div>
+        <div class="t1"><img src="/static/images/1.jpg" style="height: 96px;width: 170px"></div>
+    </div>
+
+</div>
+    <div style="height: 30px;background: #2B333F;text-align: center;line-height: 30px;color: #00FF00">精品推荐</div>
+<br>
+    <div style="height: 500px">
         {% for video in all_video.object_list %}
-            <div class="layui-col-md5">
-            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ MEDIA_URL }}{{ video.image }}" style="height: 80px;width: 60px;"></a>
+            <div class="t1">
+            <a href="{% url 'video_detail' video.id %}?video_sub_number=1"><img src="{{ MEDIA_URL }}{{ video.image }}" style="height: 96px;width: 170px;"></a>
             <br>
             <a href="{% url 'video_detail' video.id %}?video_sub_number=1">{{ video.name }}</a>
             </div>
     {% endfor %}
-    </div>
+
 </div>
-    <ul class="pagelist" style="right:500px">
-                    {% if all_video.has_previous %}
-                        <li class="long">
-                            <a href="?{{ all_video.previous_page_number.querystring }}"
-                               class="prev">
-                                上一页
-                            </a>
-                        </li>
-                    {% endif %}
-                    {% for page in all_video.pages %}
-                        {% if page %}
-                            {% ifequal page all_video.number %}
-                                <li class="active">
-                                    <a href="?{{ page.querystring }}">{{ page }}</a>
-                                </li>
-                            {% else %}
-                                <li>
-                                     <a href="?{{ page.querystring }}" class="page">{{ page }}</a>
-                                </li>
-                            {% endifequal %}
-                        {% else %}
-                        <li class="none">...</li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if all_video.has_next %}
-                        <li class="long">
-                            <a href="?{{ all_video.next_page_number.querystring }}">下一页</a>
-                        </li>
-                    {% endif %}
-                 </ul>
 {% endblock %}
 
-{% block custom_jss %}
 
-{% endblock %}
+

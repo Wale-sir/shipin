@@ -24,7 +24,7 @@ class HomeView(View):
         data['user_is_au'] = request.user.is_authenticated
         data['login_form'] = LoginForm()
 
-        all_video = Video.objects.all().exclude(video_type='15')
+        all_video = Video.objects.all()
         # 按条件查询
         category = request.GET.get('ct', '')
         data['category'] = category
@@ -51,6 +51,8 @@ class HomeView(View):
         data['good_videos'] = Video.objects.filter(is_good=True)
         # 用户发布视频 15为用户发布视频
         data['user_videos'] = Video.objects.filter(video_type='15')
+        print(data['user_videos'])
+
         return render(request, 'home.html', data)
 
 
