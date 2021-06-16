@@ -191,3 +191,9 @@ class SearchView(View):
         data['all_video'] = all_video
 
         return render(request, 'search.html', data)
+
+
+class MianView(View):
+    """公告"""
+    def get(self, request):
+        return render(request, 'mian.html')
